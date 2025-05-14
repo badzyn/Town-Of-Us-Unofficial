@@ -30,6 +30,9 @@ namespace TownOfUs.Roles
         public Func<string> ImpostorText;
         public Func<string> TaskText;
 
+        public int Defense = 0;
+        public GameObject DefenseButton = new GameObject();
+
         protected Role(PlayerControl player)
         {
             Player = player;
@@ -195,6 +198,11 @@ namespace TownOfUs.Roles
             {
                 var foreRole = (Foreteller)fore;
                 if (foreRole.WonByGuessing && CustomGameOptions.ForetellerWinEndsGame) return;
+            }
+            foreach (var pirate in GetRoles(RoleEnum.Pirate))
+            {
+                var pirateRole = (Pirate)pirate;
+                if (pirateRole.WonByDuel && CustomGameOptions.PirateWinEndsGame) return;
             }
 
             VampireWins = true;

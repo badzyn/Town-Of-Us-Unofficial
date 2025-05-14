@@ -122,6 +122,7 @@ namespace TownOfUs.Roles.Modifiers
             if (CustomGameOptions.JesterWin == NeutralRoles.ExecutionerMod.WinEndsGame.EndsGame && Role.AllRoles.Where(x => x.RoleType == RoleEnum.Jester).Any(x => ((Jester) x).VotedOut)) return;
             if (CustomGameOptions.ExecutionerWin == NeutralRoles.ExecutionerMod.WinEndsGame.EndsGame && Role.AllRoles.Where(x => x.RoleType == RoleEnum.Executioner).Any(x => ((Executioner)x).TargetVotedOut)) return;
             if (CustomGameOptions.ForetellerWinEndsGame && Role.AllRoles.Where(x => x.RoleType == RoleEnum.Foreteller).Any(x => ((Foreteller)x).WonByGuessing)) return;
+            if (CustomGameOptions.PirateWinEndsGame && Role.AllRoles.Where(x => x.RoleType == RoleEnum.Pirate).Any(x => ((Pirate)x).WonByDuel)) return;
             LoveCoupleWins = true;
             OtherLover.LoveCoupleWins = true;
         }

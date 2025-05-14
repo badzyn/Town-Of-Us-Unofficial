@@ -1,20 +1,21 @@
 ﻿using System.Linq;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using Reactor.Utilities.Extensions;
+using TownOfUs.CrewmateRoles.DeputyMod;
+using TownOfUs.CrewmateRoles.ImitatorMod;
+using TownOfUs.CrewmateRoles.MedicMod;
+using TownOfUs.CrewmateRoles.SwapperMod;
+using TownOfUs.CrewmateRoles.VigilanteMod;
+using TownOfUs.Extensions;
+using TownOfUs.ImpostorRoles.BlackmailerMod;
+using TownOfUs.Modifiers.AssassinMod;
+using TownOfUs.NeutralRoles.ForetellerMod;
+using TownOfUs.Patches;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
 using UnityEngine.UI;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
-using TownOfUs.CrewmateRoles.MedicMod;
-using TownOfUs.Modifiers.AssassinMod;
-using TownOfUs.ImpostorRoles.BlackmailerMod;
-using TownOfUs.Extensions;
-using TownOfUs.CrewmateRoles.VigilanteMod;
-using TownOfUs.CrewmateRoles.SwapperMod;
-using TownOfUs.Patches;
-using Reactor.Utilities.Extensions;
-using TownOfUs.CrewmateRoles.ImitatorMod;
-using TownOfUs.CrewmateRoles.DeputyMod;
-using TownOfUs.NeutralRoles.ForetellerMod;
+using TownOfUs.NeutralRoles.PirateMod;
 
 namespace TownOfUs.NeutralRoles.ForetellerMod
 {
@@ -161,6 +162,12 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
                 {
                     var foreteller = Role.GetRole<Foreteller>(PlayerControl.LocalPlayer);
                     ShowHideButtonsFore.HideButtonsFore(foreteller);
+                }
+
+                if (player.Is(RoleEnum.Pirate) || player.IsDueled())
+                {
+                    var pirate = Role.GetRole<Pirate>(PlayerControl.LocalPlayer);
+                    ShowHideButtonsPirate.HideButtons();
                 }
 
                 if (player.Is(RoleEnum.Deputy))

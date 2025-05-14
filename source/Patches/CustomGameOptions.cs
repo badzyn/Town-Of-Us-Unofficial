@@ -118,6 +118,7 @@ namespace TownOfUs
         public static int WraithOn => (int)Generate.WraithOn.Get();
         public static int KamikazeOn => (int)Generate.KamikazeOn.Get();
         public static int CaptainOn => (int)Generate.CaptainOn.Get();
+        public static int PirateOn => (int)Generate.PirateOn.Get();
         public static int TorchOn => (int)Generate.TorchOn.Get();
         public static int DiseasedOn => (int)Generate.DiseasedOn.Get();
         public static int FlashOn => (int)Generate.FlashOn.Get();
@@ -449,5 +450,9 @@ namespace TownOfUs
         public static float ZoomDuration => Generate.ZoomDuration.Get();
         public static float ZoomRange => Generate.ZoomRange.Get();
         public static int ZoomMaxUses => (int)Generate.ZoomMaxUses.Get();
+        public static int PirateDuelsToWin => (int)Generate.PirateDuelsToWin.Get();
+        public static float DuelCooldown => Generate.DuelCooldown.Get();
+        public static bool PirateWinEndsGame => Generate.PirateWinEndsGame.Get();
+        public static float NotificationDuration => Generate.NotificationDuration.Get();
     }
 }

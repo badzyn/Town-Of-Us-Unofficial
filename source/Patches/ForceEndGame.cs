@@ -14,6 +14,7 @@ namespace TownOfUs.Patches
             if (Role.GetRoles(RoleEnum.Jester).Any(x => ((Jester)x).VotedOut) && CustomGameOptions.JesterWin == WinEndsGame.EndsGame) return;
             if (Role.GetRoles(RoleEnum.Executioner).Any(x => ((Executioner)x).TargetVotedOut) && CustomGameOptions.ExecutionerWin == WinEndsGame.EndsGame) return;
             if (Role.GetRoles(RoleEnum.Foreteller).Any(x => ((Foreteller)x).WonByGuessing) && CustomGameOptions.ForetellerWinEndsGame) return;
+            if (Role.GetRoles(RoleEnum.Pirate).Any(x => ((Pirate)x).WonByDuel) && CustomGameOptions.PirateWinEndsGame) return;
             if (!Role.ForceGameEnd) return;
             var text = Object.Instantiate(__instance.WinText);
             text.text = "The Host Ended The Game";

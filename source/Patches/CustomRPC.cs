@@ -49,6 +49,7 @@ namespace TownOfUs
         AssassinKill,
         VigilanteKill,
         ForetellerKill,
+        PirateKill,
         FlashGrenade,
         Alert,
         Remember,
@@ -89,6 +90,8 @@ namespace TownOfUs
         FixAnimation,
         Rewind,
         RewindRevive,
+        Duel,
+        ChangeDefence,
 
         BypassKill,
         BypassMultiKill,

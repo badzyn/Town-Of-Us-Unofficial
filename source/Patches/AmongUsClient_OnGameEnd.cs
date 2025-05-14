@@ -53,6 +53,11 @@ namespace TownOfUs
                 var phan = (Phantom)role;
                 losers.Add(phan.Player.GetDefaultOutfit().ColorId);
             }
+            foreach (var role in Role.GetRoles(RoleEnum.Pirate))
+            {
+                var pirate = (Pirate)role;
+                losers.Add(pirate.Player.GetDefaultOutfit().ColorId);
+            }
             foreach (var role in Role.GetRoles(RoleEnum.SoulCollector))
             {
                 var sc = (SoulCollector)role;
@@ -164,6 +169,18 @@ namespace TownOfUs
                         var phantomData = new CachedPlayerData(phantom.Player.Data);
                         if (PlayerControl.LocalPlayer != phantom.Player) phantomData.IsYou = false;
                         EndGameResult.CachedWinners.Add(phantomData);
+                        return;
+                    }
+                }
+                else if (type == RoleEnum.Pirate && CustomGameOptions.PirateWinEndsGame)
+                {
+                    var pirate = (Pirate)role;
+                    if (pirate.WonByDuel)
+                    {
+                        EndGameResult.CachedWinners = new List<CachedPlayerData>();
+                        var pirateData = new CachedPlayerData(pirate.Player.Data);
+                        if (PlayerControl.LocalPlayer != pirate.Player) pirateData.IsYou = false;
+                        EndGameResult.CachedWinners.Add(pirateData);
                         return;
                     }
                 }

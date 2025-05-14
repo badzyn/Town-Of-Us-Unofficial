@@ -22,7 +22,7 @@ namespace TownOfUs
                             playerInfo._object.Is(RoleEnum.Jester) || playerInfo._object.Is(RoleEnum.Amnesiac) ||
                             playerInfo._object.Is(RoleEnum.Survivor) || playerInfo._object.Is(RoleEnum.GuardianAngel) ||
                             playerInfo._object.Is(RoleEnum.Glitch) || playerInfo._object.Is(RoleEnum.Executioner) ||
-                            playerInfo._object.Is(RoleEnum.Icenberg) || 
+                            playerInfo._object.Is(RoleEnum.Icenberg) || playerInfo._object.Is(RoleEnum.Pirate) ||
                             playerInfo._object.Is(RoleEnum.Arsonist) || playerInfo._object.Is(RoleEnum.Juggernaut) ||
                             playerInfo._object.Is(RoleEnum.Plaguebearer) || playerInfo._object.Is(RoleEnum.Pestilence) ||
                             playerInfo._object.Is(RoleEnum.Werewolf) || playerInfo._object.Is(RoleEnum.Foreteller) ||
@@ -63,7 +63,8 @@ namespace TownOfUs
                            || playerControl.Is(RoleEnum.Werewolf)
                            || playerControl.Is(RoleEnum.Foreteller)
                            || playerControl.Is(RoleEnum.Vampire)
-                           || playerControl.Is(RoleEnum.SoulCollector);
+                           || playerControl.Is(RoleEnum.SoulCollector)
+                           || playerControl.Is(RoleEnum.Pirate);
 
                 // If the console is not a sabotage repair console
                 if (flag && !__instance.AllowImpostor)

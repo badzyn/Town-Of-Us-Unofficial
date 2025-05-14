@@ -58,6 +58,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ForetellerOn;
         public static CustomNumberOption JesterOn;
         public static CustomNumberOption PhantomOn;
+        public static CustomNumberOption PirateOn;
         public static CustomNumberOption SoulCollectorOn;
 
         public static CustomHeaderOption NeutralKillingRoles;
@@ -152,6 +153,7 @@ namespace TownOfUs.CustomOption
         public static CustomStringOption SkipButtonDisable;
         public static CustomToggleOption FirstDeathShield;
         public static CustomToggleOption CrewKillersContinue;
+        public static CustomNumberOption NotificationDuration;
 
         public static CustomHeaderOption BetterMapSettings;
         public static CustomToggleOption VentImprovements;
@@ -553,6 +555,11 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ZoomRange;
         public static CustomNumberOption ZoomMaxUses;
 
+        public static CustomHeaderOption Pirate;
+        public static CustomNumberOption DuelCooldown;
+        public static CustomNumberOption PirateDuelsToWin;
+        public static CustomToggleOption PirateWinEndsGame;
+
         public static CustomHeaderOption Giant;
         public static CustomNumberOption GiantSlow;
 
@@ -690,6 +697,8 @@ namespace TownOfUs.CustomOption
             JesterOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#FFBFCCFF>Jester</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             PhantomOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#662962FF>Phantom</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            PirateOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#ECC23EFF>Pirate</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
             NeutralKillingRoles = new CustomHeaderOption(num++, MultiMenu.neutral, "Neutral Killing Roles");
@@ -962,6 +971,8 @@ namespace TownOfUs.CustomOption
             SkipButtonDisable = new CustomStringOption(num++, MultiMenu.main, "Disable Meeting Skip Button", new[] { "No", "Emergency", "Always" });
             FirstDeathShield = new CustomToggleOption(num++, MultiMenu.main, "First Death Shield Next Game", false);
             CrewKillersContinue = new CustomToggleOption(num++, MultiMenu.main, "Crew Killers Continue Game", false);
+            NotificationDuration =
+                new CustomNumberOption(num++, MultiMenu.main, "Role Notification Duration", 2.5f, 0f, 10f, 0.25f, CooldownFormat);
 
             TaskTrackingSettings =
                 new CustomHeaderOption(num++, MultiMenu.main, "Task Tracking Settings");
@@ -1351,6 +1362,14 @@ namespace TownOfUs.CustomOption
             PhantomTasksRemaining =
                  new CustomNumberOption(num++, MultiMenu.neutral, "Tasks Remaining When Phantom Can Be Clicked", 5, 1, 15, 1);
             PhantomWinEndsGame = new CustomToggleOption(num++, MultiMenu.neutral, "Phantom Win Ends Game", false);
+
+            Pirate =
+                new CustomHeaderOption(num++, MultiMenu.neutral, "<color=#ECC23EFF>Pirate</color>");
+            DuelCooldown =
+                new CustomNumberOption(num++, MultiMenu.neutral, "Duel Cooldown", 25f, 10f, 60f, 2.5f, CooldownFormat);
+            PirateDuelsToWin =
+                new CustomNumberOption(num++, MultiMenu.neutral, "Number Of Won Duels To Win", 2, 1, 5, 1);
+            PirateWinEndsGame = new CustomToggleOption(num++, MultiMenu.neutral, "Pirate Win Ends Game", true);
 
             Arsonist =
                 new CustomHeaderOption(num++, MultiMenu.neutral, "<color=#FF4D00FF>Arsonist</color>");

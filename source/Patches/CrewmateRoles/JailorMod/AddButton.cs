@@ -1,24 +1,25 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using Reactor.Utilities;
 using Reactor.Utilities.Extensions;
+using TownOfUs.CrewmateRoles.DeputyMod;
+using TownOfUs.CrewmateRoles.ImitatorMod;
 using TownOfUs.CrewmateRoles.MedicMod;
+using TownOfUs.CrewmateRoles.SwapperMod;
+using TownOfUs.CrewmateRoles.VigilanteMod;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.BlackmailerMod;
+using TownOfUs.Modifiers.AssassinMod;
+using TownOfUs.NeutralRoles.ForetellerMod;
 using TownOfUs.Patches;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
-using TownOfUs.Extensions;
-using TownOfUs.CrewmateRoles.ImitatorMod;
-using Reactor.Utilities;
-using TownOfUs.CrewmateRoles.SwapperMod;
-using TownOfUs.CrewmateRoles.VigilanteMod;
-using TownOfUs.Modifiers.AssassinMod;
-using TownOfUs.NeutralRoles.ForetellerMod;
-using TownOfUs.CrewmateRoles.DeputyMod;
-using System.Collections.Generic;
+using TownOfUs.NeutralRoles.PirateMod;
 
 namespace TownOfUs.CrewmateRoles.JailorMod
 {
@@ -213,6 +214,12 @@ namespace TownOfUs.CrewmateRoles.JailorMod
                     {
                         var fore = Role.GetRole<Foreteller>(PlayerControl.LocalPlayer);
                         ShowHideButtonsFore.HideButtonsFore(fore);
+                    }
+
+                    if (player.Is(RoleEnum.Pirate) || player.IsDueled())
+                    {
+                        var pirate = Role.GetRole<Pirate>(PlayerControl.LocalPlayer);
+                        ShowHideButtonsPirate.HideButtons();
                     }
 
                     if (player.Is(RoleEnum.Deputy))

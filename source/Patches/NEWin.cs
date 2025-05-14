@@ -36,6 +36,12 @@ namespace TownOfUs.Patches
                 if (CustomGameOptions.PhantomWinEndsGame) return;
                 else neWin = true;
             }
+            var pirateRole = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Pirate && ((Pirate)x).WonByDuel && ((Pirate)x).Player == PlayerControl.LocalPlayer);
+            if (pirateRole != null)
+            {
+                if (CustomGameOptions.PirateWinEndsGame) return;
+                else neWin = true;
+            }
             if (neWin)
             {
                 __instance.WinText.text = "</color><color=#008DFFFF>Victory";

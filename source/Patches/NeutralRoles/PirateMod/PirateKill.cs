@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Hazel;
+﻿using System.Linq;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using Reactor.Utilities.Extensions;
 using TownOfUs.CrewmateRoles.DeputyMod;
@@ -10,6 +8,7 @@ using TownOfUs.CrewmateRoles.SwapperMod;
 using TownOfUs.CrewmateRoles.VigilanteMod;
 using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.BlackmailerMod;
+using TownOfUs.Modifiers.AssassinMod;
 using TownOfUs.NeutralRoles.ForetellerMod;
 using TownOfUs.Patches;
 using TownOfUs.Roles;
@@ -18,45 +17,40 @@ using UnityEngine;
 using UnityEngine.UI;
 using TownOfUs.NeutralRoles.PirateMod;
 
-namespace TownOfUs.Modifiers.AssassinMod
+namespace TownOfUs.NeutralRoles.PirateMod
 {
-    public class AssassinKill
+    public class PirateKill
     {
-        public static void RpcMurderPlayer(PlayerControl player, PlayerControl assassin)
+        public static void RpcMurderPlayer(PlayerControl player, PlayerControl pirate)
         {
             PlayerVoteArea voteArea = MeetingHud.Instance.playerStates.First(
                 x => x.TargetPlayerId == player.PlayerId
             );
-            RpcMurderPlayer(voteArea, player, assassin);
+            RpcMurderPlayer(voteArea, player, pirate);
         }
-        public static void RpcMurderPlayer(PlayerVoteArea voteArea, PlayerControl player, PlayerControl assassin)
+        public static void RpcMurderPlayer(PlayerVoteArea voteArea, PlayerControl player, PlayerControl pirate)
         {
             MurderPlayer(voteArea, player);
-            AssassinKillCount(player, assassin);
-            Utils.Rpc(CustomRPC.AssassinKill, player.PlayerId, assassin.PlayerId);
+            Utils.Rpc(CustomRPC.PirateKill, player.PlayerId, pirate.PlayerId);
         }
 
-        public static void MurderPlayer(PlayerControl player, bool checkLover = true)
+        public static void MurderPlayer(PlayerControl player, bool checkLover = true, bool showKillAnim = true)
         {
             PlayerVoteArea voteArea = MeetingHud.Instance.playerStates.First(
                 x => x.TargetPlayerId == player.PlayerId
             );
-            MurderPlayer(voteArea, player, checkLover);
+            MurderPlayer(voteArea, player, checkLover, showKillAnim);
         }
-        public static void AssassinKillCount(PlayerControl player, PlayerControl assassin)
-        {
-            var assassinPlayer = Role.GetRole(assassin);
-            if (player == assassin) assassinPlayer.IncorrectAssassinKills += 1;
-            else assassinPlayer.CorrectAssassinKills += 1;
-        }
+
         public static void MurderPlayer(
             PlayerVoteArea voteArea,
             PlayerControl player,
-            bool checkLover = true
+            bool checkLover = true,
+            bool showKillAnim = true
         )
         {
             var hudManager = HudManager.Instance;
-            if (checkLover)
+            if (showKillAnim)
             {
                 SoundManager.Instance.PlaySound(player.KillSfx, false, 0.8f);
                 hudManager.KillOverlay.ShowKillAnimation(player.Data, player.Data);
@@ -144,8 +138,8 @@ namespace TownOfUs.Modifiers.AssassinMod
 
                 if (player.Is(RoleEnum.Foreteller))
                 {
-                    var fore = Role.GetRole<Foreteller>(PlayerControl.LocalPlayer);
-                    ShowHideButtonsFore.HideButtonsFore(fore);
+                    var foreteller = Role.GetRole<Foreteller>(PlayerControl.LocalPlayer);
+                    ShowHideButtonsFore.HideButtonsFore(foreteller);
                 }
 
                 if (player.Is(RoleEnum.Pirate) || player.IsDueled())
@@ -166,12 +160,6 @@ namespace TownOfUs.Modifiers.AssassinMod
                     politician.RevealButton.Destroy();
                 }
 
-                if (player.Is(RoleEnum.Mayor))
-                {
-                    var mayor = Role.GetRole<Mayor>(PlayerControl.LocalPlayer);
-                    mayor.RevealButton.Destroy();
-                }
-
                 if (player.Is(RoleEnum.Jailor))
                 {
                     var jailor = Role.GetRole<Jailor>(PlayerControl.LocalPlayer);
@@ -185,13 +173,12 @@ namespace TownOfUs.Modifiers.AssassinMod
                     hypnotist.HysteriaButton.Destroy();
                 }
             }
-            player.Data.IsDead = true;
+            player.Die(DeathReason.Kill, false);
             if (checkLover && player.IsLover() && CustomGameOptions.BothLoversDie)
             {
                 var otherLover = Modifier.GetModifier<Lover>(player).OtherLover.Player;
-                if (!otherLover.Is(RoleEnum.Pestilence)) MurderPlayer(otherLover, false);
+                if (!otherLover.Is(RoleEnum.Pestilence)) MurderPlayer(otherLover, false, false);
             }
-            player.Die(DeathReason.Kill, false);
 
             var deadPlayer = new DeadPlayer
             {
@@ -216,43 +203,20 @@ namespace TownOfUs.Modifiers.AssassinMod
             }
 
             var blackmailers = Role.AllRoles.Where(x => x.RoleType == RoleEnum.Blackmailer && x.Player != null).Cast<Blackmailer>();
-            var blackmailed = new List<PlayerControl>();
             foreach (var role in blackmailers)
             {
-                if (role.Blackmailed != null && !blackmailed.Contains(role.Blackmailed))
+                if (role.Blackmailed != null && voteArea.TargetPlayerId == role.Blackmailed.PlayerId)
                 {
-                    blackmailed.Add(role.Blackmailed);
-                    if (voteArea.TargetPlayerId == role.Blackmailed.PlayerId)
+                    if (BlackmailMeetingUpdate.PrevXMark != null && BlackmailMeetingUpdate.PrevOverlay != null)
                     {
-                        if (BlackmailMeetingUpdate.PrevXMark != null && BlackmailMeetingUpdate.PrevOverlay != null)
-                        {
-                            voteArea.XMark.sprite = BlackmailMeetingUpdate.PrevXMark;
-                            voteArea.Overlay.sprite = BlackmailMeetingUpdate.PrevOverlay;
-                            voteArea.XMark.transform.localPosition = new Vector3(
-                                voteArea.XMark.transform.localPosition.x - BlackmailMeetingUpdate.LetterXOffset,
-                                voteArea.XMark.transform.localPosition.y - BlackmailMeetingUpdate.LetterYOffset,
-                                voteArea.XMark.transform.localPosition.z);
-                        }
+                        voteArea.XMark.sprite = BlackmailMeetingUpdate.PrevXMark;
+                        voteArea.Overlay.sprite = BlackmailMeetingUpdate.PrevOverlay;
+                        voteArea.XMark.transform.localPosition = new Vector3(
+                            voteArea.XMark.transform.localPosition.x - BlackmailMeetingUpdate.LetterXOffset,
+                            voteArea.XMark.transform.localPosition.y - BlackmailMeetingUpdate.LetterYOffset,
+                            voteArea.XMark.transform.localPosition.z);
                     }
                 }
-            }
-            var jailors = Role.AllRoles.Where(x => x.RoleType == RoleEnum.Jailor && x.Player != null).Cast<Jailor>();
-            foreach (var role in jailors)
-            {
-                if (role.Jailed == player)
-                {
-                    role.JailCell.Destroy();
-                    if (PlayerControl.LocalPlayer == role.Player)
-                    {
-                        role.ExecuteButton.Destroy();
-                        role.UsesText.Destroy();
-                    }
-                }
-            }
-            var imitators = Role.AllRoles.Where(x => x.RoleType == RoleEnum.Imitator && x.Player != null).Cast<Imitator>();
-            foreach (var role in imitators)
-            {
-                if (role.jailedPlayer == player) role.JailCell.Destroy();
             }
 
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Vigilante) && !PlayerControl.LocalPlayer.Data.IsDead)
@@ -337,33 +301,7 @@ namespace TownOfUs.Modifiers.AssassinMod
                 }
             }
 
-            if (AmongUsClient.Instance.AmHost)
-            {
-                foreach (var role in Role.GetRoles(RoleEnum.President))
-                {
-                    if (role is President president)
-                    {
-                        if (role.Player == player)
-                        {
-                            president.ExtraVotes.Clear();
-                        }
-                        else
-                        {
-                            var votesRegained = president.ExtraVotes.RemoveAll(x => x == player.PlayerId);
-
-                            if (president.Player == PlayerControl.LocalPlayer)
-                                president.VoteBank += votesRegained;
-
-                            var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                                (byte)CustomRPC.AddPresidentVoteBank, SendOption.Reliable, -1);
-                            writer.Write(president.Player.PlayerId);
-                            writer.Write(votesRegained);
-                            AmongUsClient.Instance.FinishRpcImmediately(writer);
-                        }
-                    }
-                }
-                meetingHud.CheckForEndVoting();
-            }
+            if (AmongUsClient.Instance.AmHost) meetingHud.CheckForEndVoting();
 
             AddHauntPatch.AssassinatedPlayers.Add(player);
         }

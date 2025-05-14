@@ -1,16 +1,16 @@
+using System;
+using AmongUs.GameOptions;
 using HarmonyLib;
+using TownOfUs.CrewmateRoles.ImitatorMod;
 using TownOfUs.CrewmateRoles.InvestigatorMod;
 using TownOfUs.CrewmateRoles.SnitchMod;
 using TownOfUs.CrewmateRoles.TrapperMod;
-using TownOfUs.Roles;
-using UnityEngine;
-using System;
 using TownOfUs.Extensions;
-using TownOfUs.CrewmateRoles.ImitatorMod;
-using AmongUs.GameOptions;
-using TownOfUs.Roles.Modifiers;
 using TownOfUs.ImpostorRoles.BomberMod;
 using TownOfUs.Patches;
+using TownOfUs.Roles;
+using TownOfUs.Roles.Modifiers;
+using UnityEngine;
 
 namespace TownOfUs.NeutralRoles.AmnesiacMod
 {
@@ -148,6 +148,7 @@ namespace TownOfUs.NeutralRoles.AmnesiacMod
                 case RoleEnum.Vampire:
                 case RoleEnum.SoulCollector:
                 case RoleEnum.Mercenary:
+                case RoleEnum.Pirate:
 
                     rememberImp = false;
 
@@ -221,7 +222,7 @@ namespace TownOfUs.NeutralRoles.AmnesiacMod
                         var survivor = new Survivor(other);
                         survivor.RegenTask();
                     }
-                    else if (role == RoleEnum.Foreteller || role == RoleEnum.Executioner || role == RoleEnum.Jester || role == RoleEnum.SoulCollector)
+                    else if (role == RoleEnum.Foreteller || role == RoleEnum.Executioner || role == RoleEnum.Jester || role == RoleEnum.SoulCollector || role == RoleEnum.Pirate)
                     {
                         var jester = new Jester(other);
                         jester.RegenTask();
@@ -653,6 +654,14 @@ namespace TownOfUs.NeutralRoles.AmnesiacMod
             {
                 var bomberRole = Role.GetRole<Bomber>(amnesiac);
                 bomberRole.Bomb.ClearBomb();
+            }
+
+            else if (role == RoleEnum.Pirate)
+            {
+                var pirateRole = Role.GetRole<Pirate>(amnesiac);
+                pirateRole.LastDueled = DateTime.UtcNow;
+                pirateRole.DueledPlayer = null;
+                pirateRole.DuelsWon = 0;
             }
 
             else if (!(amnesiac.Is(RoleEnum.Amnesiac) || amnesiac.Is(Faction.Impostors)))

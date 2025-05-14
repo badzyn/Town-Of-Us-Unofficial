@@ -49,6 +49,7 @@ namespace TownOfUs
         private static Sprite Barrier => TownOfUs.BarrierSprite;
         private static Sprite Zoom => TownOfUs.ZoomSprite;
         private static Sprite Rewind => TownOfUs.RewindSprite;
+        private static Sprite Duel => TownOfUs.DuelSprite;
 
         private static Sprite Kill;
 
@@ -203,6 +204,13 @@ namespace TownOfUs
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.Captain))
             {
                 __instance.KillButton.graphic.sprite = Zoom;
+                flag = true;
+            }
+            else if (PlayerControl.LocalPlayer.Is(RoleEnum.Pirate))
+            {
+                __instance.KillButton.graphic.sprite = Duel;
+                __instance.KillButton.buttonLabelText.gameObject.SetActive(true);
+                __instance.KillButton.buttonLabelText.text = "Duel";
                 flag = true;
             }
             else

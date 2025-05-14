@@ -39,8 +39,9 @@ using Il2CppSystem.Linq;
 using TownOfUs.CrewmateRoles.DeputyMod;
 using TownOfUs.CrewmateRoles.ClericMod;
 using TownOfUs.ImpostorRoles.BlackmailerMod;
-using TownOfUs.NeutralRoles.IcenbergMod;
 using TownOfUs.CrewmateRoles.TimeLordMod;
+using TownOfUs.NeutralRoles.PirateMod;
+
 
 namespace TownOfUs
 {
@@ -947,6 +948,10 @@ namespace TownOfUs
                         ForetellerKill.DoomKillCount(toDie4, fore);
                         ForetellerKill.MurderPlayer(toDie4);
                         break;
+                    case CustomRPC.PirateKill:
+                        var toDie5 = Utils.PlayerById(reader.ReadByte());
+                        PirateKill.MurderPlayer(toDie5);
+                        break;
                     case CustomRPC.SetMimic:
                         var glitchPlayer = Utils.PlayerById(reader.ReadByte());
                         var mimicPlayer = Utils.PlayerById(reader.ReadByte());
@@ -1173,6 +1178,10 @@ namespace TownOfUs
                         var hunter2 = Role.GetRole<Hunter>(Utils.PlayerById(reader.ReadByte()));
                         var hunterLastVoted = Utils.PlayerById(reader.ReadByte());
                         Retribution.MurderPlayer(hunter2, hunterLastVoted);
+                        break;
+                    case CustomRPC.Duel:
+                        var pirate = Role.GetRole<Pirate>(Utils.PlayerById(reader.ReadByte()));
+                        pirate.DueledPlayer = Utils.PlayerById(reader.ReadByte());
                         break;
                     case CustomRPC.ExecutionerToJester:
                         TargetColor.ExeToJes(Utils.PlayerById(reader.ReadByte()));
@@ -1891,7 +1900,9 @@ namespace TownOfUs
                 if (CustomGameOptions.MercenaryOn > 0)
                     NeutralBenignRoles.Add((typeof(Mercenary), CustomGameOptions.MercenaryOn, false || CustomGameOptions.UniqueRoles));
 
-               
+                if (CustomGameOptions.PirateOn > 0)
+                    NeutralEvilRoles.Add((typeof(Pirate), CustomGameOptions.PirateOn, true));
+
                 #endregion
                 #region Impostor Roles
                 if (CustomGameOptions.UndertakerOn > 0)

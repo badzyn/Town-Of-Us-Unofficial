@@ -34,6 +34,7 @@ using static TownOfUs.DisableAbilities;
 using static TownOfUs.Roles.Icenberg;
 using TownOfUs.ImpostorRoles.KamikazeMod;
 using TownOfUs.CrewmateRoles.SheriffMod;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TownOfUs
 {
@@ -361,6 +362,15 @@ namespace TownOfUs
             });
         }
 
+        public static bool IsDueled(this PlayerControl player)
+        {
+            return Role.GetRoles(RoleEnum.Pirate).Any(role =>
+            {
+                var dueledPlayer = ((Pirate)role).DueledPlayer;
+                return dueledPlayer != null && player.PlayerId == dueledPlayer.PlayerId && !role.Player.Data.IsDead && !role.Player.Data.Disconnected;
+            });
+        }
+
         public static bool IsShielded(this PlayerControl player)
         {
             return Role.GetRoles(RoleEnum.Medic).Any(role =>
@@ -515,6 +525,15 @@ namespace TownOfUs
                 if (oracle.Blessed == player) oracles.Add(oracle);
             }
             return oracles;
+        }
+
+        public static Pirate GetPirate(this PlayerControl player)
+        {
+            return Role.GetRoles(RoleEnum.Pirate).FirstOrDefault(role =>
+            {
+                var dueledPlayer = ((Pirate)role).DueledPlayer;
+                return dueledPlayer != null && player.PlayerId == dueledPlayer.PlayerId;
+            }) as Pirate;
         }
 
         public static GuardianAngel GetGA(this PlayerControl player)
@@ -1879,6 +1898,11 @@ namespace TownOfUs
             {
                 var sc = (SoulCollector)role;
                 SoulExtensions.ClearSouls(sc.Souls);
+            }
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Pirate))
+            {
+                var pirate = Role.GetRole<Pirate>(PlayerControl.LocalPlayer);
+                pirate.LastDueled = DateTime.UtcNow;
             }
             #endregion
             #region ImposterRoles

@@ -34,7 +34,8 @@ namespace TownOfUs.NeutralRoles.PhantomMod
                 var toChooseFrom = PlayerControl.AllPlayerControls.ToArray().Where(x => !x.Is(Faction.Crewmates)
                     && !x.Is(Faction.Impostors) && !x.IsLover() && !x.Data.Disconnected && x.Data.IsDead &&
                     !(x == exiled && exiled.Is(RoleEnum.Jester)) && !(x.Is(RoleEnum.Foreteller) && Role.GetRole<Foreteller>(x).WonByGuessing) &&
-                    !(x.Is(RoleEnum.Executioner) && Role.GetRole<Executioner>(x).TargetVotedOut) && !(x.Is(RoleEnum.Jester) && Role.GetRole<Jester>(x).VotedOut)).ToList();
+                    !(x.Is(RoleEnum.Pirate) && Role.GetRole<Pirate>(x).WonByDuel) && !(x.Is(RoleEnum.Executioner) && Role.GetRole<Executioner>(x).TargetVotedOut) &&
+                    !(x.Is(RoleEnum.Jester) && Role.GetRole<Jester>(x).VotedOut)).ToList();
                 if (toChooseFrom.Count == 0) return;
                 var rand = Random.RandomRangeInt(0, toChooseFrom.Count);
                 var pc = toChooseFrom[rand];

@@ -14,6 +14,7 @@ namespace TownOfUs.NeutralRoles.IcenbergMod
             if (Role.GetRoles(RoleEnum.Jester).Any(x => ((Jester)x).VotedOut) && CustomGameOptions.JesterWin == ExecutionerMod.WinEndsGame.EndsGame) return;
             if (Role.GetRoles(RoleEnum.Executioner).Any(x => ((Executioner)x).TargetVotedOut) && CustomGameOptions.ExecutionerWin == ExecutionerMod.WinEndsGame.EndsGame) return;
             if (Role.GetRoles(RoleEnum.Foreteller).Any(x => ((Foreteller)x).WonByGuessing) && CustomGameOptions.ForetellerWinEndsGame) return;
+            if (Role.GetRoles(RoleEnum.Pirate).Any(x => ((Pirate)x).WonByDuel) && CustomGameOptions.PirateWinEndsGame) return;
             var role = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Icenberg && ((Icenberg) x).IcenbergWins);
             if (role == null) return;
             PoolablePlayer[] array = Object.FindObjectsOfType<PoolablePlayer>();

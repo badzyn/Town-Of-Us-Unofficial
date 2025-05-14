@@ -348,6 +348,12 @@ namespace TownOfUs.Patches
                 var cap = Role.GetRole<Captain>(PlayerControl.LocalPlayer);
                 cap.Cooldown = CustomGameOptions.InitialCooldowns;
             }
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Pirate))
+            {
+                var pirate = Role.GetRole<Pirate>(PlayerControl.LocalPlayer);
+                pirate.LastDueled = DateTime.UtcNow;
+                pirate.LastDueled = pirate.LastDueled.AddSeconds(CustomGameOptions.InitialCooldowns - CustomGameOptions.DuelCooldown);
+            }
         }
     }
 }

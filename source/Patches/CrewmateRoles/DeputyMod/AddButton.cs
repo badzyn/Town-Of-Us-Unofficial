@@ -19,6 +19,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem.PlaybackState;
 using Object = UnityEngine.Object;
+using TownOfUs.NeutralRoles.PirateMod;
 
 namespace TownOfUs.CrewmateRoles.DeputyMod
 {
@@ -197,6 +198,12 @@ namespace TownOfUs.CrewmateRoles.DeputyMod
                 {
                     var fore = Role.GetRole<Foreteller>(PlayerControl.LocalPlayer);
                     ShowHideButtonsFore.HideTarget(fore, voteArea.TargetPlayerId);
+                }
+
+                if (player.Is(RoleEnum.Pirate) || player.IsDueled())
+                {
+                    var pirate = Role.GetRole<Pirate>(PlayerControl.LocalPlayer);
+                    ShowHideButtonsPirate.HideButtons();
                 }
 
                 if (player.Is(RoleEnum.Deputy))

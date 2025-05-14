@@ -129,6 +129,13 @@ namespace TownOfUs
         public static Sprite SuicideSprite;
         public static Sprite ZoomSprite;
         public static Sprite RewindSprite;
+        public static Sprite DuelSprite;
+        public static Sprite DuelAttack0Sprite;
+        public static Sprite DuelAttack1Sprite;
+        public static Sprite DuelAttack2Sprite;
+        public static Sprite DuelDefend0Sprite;
+        public static Sprite DuelDefend1Sprite;
+        public static Sprite DuelDefend2Sprite;
 
         public static Sprite ToUBanner;
         public static Sprite UpdateTOUButton;
@@ -257,6 +264,13 @@ namespace TownOfUs
             SuicideSprite = CreateSprite("TownOfUs.Resources.Suicide.png");
             ZoomSprite = CreateSprite("TownOfUs.Resources.Zoom.png");
             RewindSprite = CreateSprite("TownOfUs.Resources.Rewind.png");
+            DuelSprite = CreateSprite("TownOfUs.Resources.Duel.png");
+            DuelAttack0Sprite = CreateSprite("TownOfUs.Resources.DuelAttack0.png");
+            DuelAttack1Sprite = CreateSprite("TownOfUs.Resources.DuelAttack1.png");
+            DuelAttack2Sprite = CreateSprite("TownOfUs.Resources.DuelAttack2.png");
+            DuelDefend0Sprite = CreateSprite("TownOfUs.Resources.DuelDefend0.png");
+            DuelDefend1Sprite = CreateSprite("TownOfUs.Resources.DuelDefend1.png");
+            DuelDefend2Sprite = CreateSprite("TownOfUs.Resources.DuelDefend2.png");
 
             ToUBanner = CreateSprite("TownOfUs.Resources.TownOfUsBanner.png");
             UpdateTOUButton = CreateSprite("TownOfUs.Resources.UpdateToUButton.png");

@@ -118,6 +118,7 @@ namespace TownOfUs.Patches {
                     else if (role.Value == RoleEnum.Kamikaze) { playerRole += "<color=#" + Patches.Colors.Impostor.ToHtmlStringRGBA() + ">Kamikaze</color> > "; }
                     else if (role.Value == RoleEnum.Captain) { playerRole += "<color=#" + Patches.Colors.Captain.ToHtmlStringRGBA() + ">Captain</color> > "; }
                     else if (role.Value == RoleEnum.TimeLord) { playerRole += "<color=#" + Patches.Colors.TimeLord.ToHtmlStringRGBA() + ">Time Lord</color> > "; }
+                    else if (role.Value == RoleEnum.Pirate) { playerRole += "<color=#" + Patches.Colors.Pirate.ToHtmlStringRGBA() + ">Pirate</color> > "; }
                 }
                 playerRole = playerRole.Remove(playerRole.Length - 3);
 
@@ -214,6 +215,15 @@ namespace TownOfUs.Patches {
                         playerName += $"<color=#EFBF04>{playerControl.Data.PlayerName}</color>";
                     }
                 }
+                if (playerControl.Is(RoleEnum.Pirate) && CustomGameOptions.PirateWinEndsGame)
+                {
+                    var pirate = Role.GetRole<Pirate>(playerControl);
+                    if (pirate.WonByDuel)
+                    {
+                        AdditionalTempData.otherWinners.Add(new AdditionalTempData.Winners() { PlayerName = pirate.Player.Data.PlayerName, Role = RoleEnum.Pirate });
+                        playerName += $"<color=#EFBF04>{playerControl.Data.PlayerName}</color>";
+                    }
+                }
                 if (playerName == "") playerName += playerControl.Data.PlayerName;
 
                 AdditionalTempData.playerRoles.Add(new AdditionalTempData.PlayerRoleInfo() { PlayerName = playerName, Role = playerRole });
@@ -268,6 +278,7 @@ namespace TownOfUs.Patches {
                     else if (data.Role == RoleEnum.Executioner) roleSummaryText.AppendLine("<color=#" + Patches.Colors.Executioner.ToHtmlStringRGBA() + $">{data.PlayerName}</color>");
                     else if (data.Role == RoleEnum.Jester) roleSummaryText.AppendLine("<color=#" + Patches.Colors.Jester.ToHtmlStringRGBA() + $">{data.PlayerName}</color>");
                     else if (data.Role == RoleEnum.Phantom) roleSummaryText.AppendLine("<color=#" + Patches.Colors.Phantom.ToHtmlStringRGBA() + $">{data.PlayerName}</color>");
+                    else if (data.Role == RoleEnum.Pirate) roleSummaryText.AppendLine("<color=#" + Patches.Colors.Pirate.ToHtmlStringRGBA() + $">{data.PlayerName}</color>");
                     else if (data.Role == RoleEnum.SoulCollector) roleSummaryText.AppendLine("<color=#" + Patches.Colors.SoulCollector.ToHtmlStringRGBA() + $">{data.PlayerName}</color>");
                 }
             }

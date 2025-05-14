@@ -53,6 +53,7 @@ namespace TownOfUs
         President,
         Captain,
         TimeLord,
+        Pirate,
 
         Miner,
         Swooper,

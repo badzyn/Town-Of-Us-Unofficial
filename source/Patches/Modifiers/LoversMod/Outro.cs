@@ -33,6 +33,7 @@ namespace TownOfUs.Modifiers.LoversMod
             if (Role.GetRoles(RoleEnum.Jester).Any(x => ((Jester)x).VotedOut) && CustomGameOptions.JesterWin == NeutralRoles.ExecutionerMod.WinEndsGame.EndsGame) return;
             if (Role.GetRoles(RoleEnum.Executioner).Any(x => ((Executioner)x).TargetVotedOut) && CustomGameOptions.ExecutionerWin == NeutralRoles.ExecutionerMod.WinEndsGame.EndsGame) return;
             if (Role.GetRoles(RoleEnum.Foreteller).Any(x => ((Foreteller)x).WonByGuessing) && CustomGameOptions.ForetellerWinEndsGame) return;
+            if (Role.GetRoles(RoleEnum.Pirate).Any(x => ((Pirate)x).WonByDuel) && CustomGameOptions.PirateWinEndsGame) return;
             if (!Modifier.AllModifiers.Where(x => x.ModifierType == ModifierEnum.Lover)
                 .Any(x => ((Lover) x).LoveCoupleWins)) return;
 
