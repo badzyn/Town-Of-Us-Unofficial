@@ -62,6 +62,7 @@ namespace TownOfUs.CustomOption
 
         public static CustomHeaderOption NeutralKillingRoles;
         public static CustomNumberOption ArsonistOn;
+        public static CustomNumberOption GhoulOn;
         public static CustomNumberOption GlitchOn;
         public static CustomNumberOption IcenbergOn;
         public static CustomNumberOption JuggernautOn;
@@ -694,6 +695,8 @@ namespace TownOfUs.CustomOption
 
             NeutralKillingRoles = new CustomHeaderOption(num++, MultiMenu.neutral, "Neutral Killing Roles");
             ArsonistOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#FF4D00FF>Arsonist</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            GhoulOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#a3363f>Ghoul</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             GlitchOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#00FF00FF>Glitch</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);

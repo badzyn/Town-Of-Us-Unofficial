@@ -25,6 +25,7 @@ using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
 using Coroutine = TownOfUs.ImpostorRoles.JanitorMod.Coroutine;
+using CoroutineGhoul = TownOfUs.NeutralRoles.GhoulMod.Coroutine;
 using Object = UnityEngine.Object;
 using PerformKillButton = TownOfUs.NeutralRoles.AmnesiacMod.PerformKillButton;
 using Random = UnityEngine.Random;
@@ -41,6 +42,7 @@ using TownOfUs.CrewmateRoles.ClericMod;
 using TownOfUs.ImpostorRoles.BlackmailerMod;
 using TownOfUs.NeutralRoles.IcenbergMod;
 using TownOfUs.CrewmateRoles.TimeLordMod;
+using TownOfUs.GhoulMod;
 
 namespace TownOfUs
 {
@@ -792,6 +794,19 @@ namespace TownOfUs
                                 Coroutines.Start(Coroutine.CleanCoroutine(body, janitorRole));
 
                         break;
+
+                    case CustomRPC.GhoulEat:
+                        readByte1 = reader.ReadByte();
+                        var ghoulPlayer = Utils.PlayerById(readByte1);
+                        var ghoulRole = Role.GetRole<Ghoul>(ghoulPlayer);
+                        readByte = reader.ReadByte();
+                        var deadBodiesGhoul = Object.FindObjectsOfType<DeadBody>();
+                        foreach (var body in deadBodiesGhoul)
+                            if (body.ParentId == readByte)
+                                Coroutines.Start(CoroutineGhoul.EatCoroutine(body, ghoulRole));
+
+                        break;
+
                     case CustomRPC.ForceEndGame:
                         if (Role.ForceGameEnd != true) Role.ForceGameEnd = true;
                         break;
@@ -1310,6 +1325,10 @@ namespace TownOfUs
                     case CustomRPC.SoulCollectorWin:
                         var soulCollector = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.SoulCollector);
                         ((SoulCollector)soulCollector)?.Wins();
+                        break;
+                    case CustomRPC.GhoulWin:
+                        var ghoul = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Ghoul);
+                        ((Ghoul)ghoul)?.Wins();
                         break;
                     case CustomRPC.Infect:
                         var pb = Role.GetRole<Plaguebearer>(Utils.PlayerById(reader.ReadByte()));
@@ -1866,6 +1885,9 @@ namespace TownOfUs
 
                 if (CustomGameOptions.GuardianAngelOn > 0)
                     NeutralBenignRoles.Add((typeof(GuardianAngel), CustomGameOptions.GuardianAngelOn, false || CustomGameOptions.UniqueRoles));
+
+                if (CustomGameOptions.GhoulOn > 0)
+                    NeutralKillingRoles.Add((typeof(Ghoul), CustomGameOptions.GhoulOn, true));
 
                 if (CustomGameOptions.GlitchOn > 0)
                     NeutralKillingRoles.Add((typeof(Glitch), CustomGameOptions.GlitchOn, true));

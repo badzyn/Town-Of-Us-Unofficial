@@ -5,6 +5,7 @@ using TownOfUs.NeutralRoles.ExecutionerMod;
 using TownOfUs.CrewmateRoles.HaunterMod;
 using TownOfUs.CrewmateRoles.MediumMod;
 using TownOfUs.NeutralRoles.GuardianAngelMod;
+using Steamworks;
 
 namespace TownOfUs
 {
@@ -65,6 +66,7 @@ namespace TownOfUs
         public static int SeerOn => (int)Generate.SeerOn.Get();
         public static int GlitchOn => (int)Generate.GlitchOn.Get();
         public static int IcenbergOn => (int)Generate.IcenbergOn.Get();
+        public static int GhoulOn => (int)Generate.GhoulOn.Get();
         public static int MorphlingOn => (int)Generate.MorphlingOn.Get();
         public static int ExecutionerOn => (int)Generate.ExecutionerOn.Get();
         public static int SpyOn => (int)Generate.SpyOn.Get();
@@ -449,5 +451,6 @@ namespace TownOfUs
         public static float ZoomDuration => Generate.ZoomDuration.Get();
         public static float ZoomRange => Generate.ZoomRange.Get();
         public static int ZoomMaxUses => (int)Generate.ZoomMaxUses.Get();
+        public static int GhoulEatCd => 25;
     }
 }

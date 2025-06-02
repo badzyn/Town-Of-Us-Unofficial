@@ -32,6 +32,8 @@ namespace TownOfUs
         SoulCollectorWin,
         IcenbergWin,
         ForceEndGame,
+        GhoulWin,
+        GhoulEat,
 
         JanitorClean,
         FixLights,
