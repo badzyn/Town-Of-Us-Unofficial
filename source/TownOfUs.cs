@@ -32,7 +32,7 @@ namespace TownOfUs
     {
         
         public const string Id = "com.slushiegoose.townofus";
-        public const string VersionString = "1.3.3";
+        public const string VersionString = "1.4.0";
         public static System.Version Version = System.Version.Parse(VersionString);
         public const string VersionTag = "<color=#ff33fc></color>";
 
