@@ -46,8 +46,8 @@ namespace TownOfUs.CustomOption
         private static Vector3? _origin;
 
         [HarmonyPostfix]
-        [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
-        public static void MainMenuManager_StartPostfix(MainMenuManager __instance)
+        [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Start))]
+        public static void OptionsMenuBehaviour_StartPostfix(OptionsMenuBehaviour __instance)
         {
             // Prefab for the title
             var go = new GameObject("TitleText");
@@ -57,14 +57,7 @@ namespace TownOfUs.CustomOption
             tmp.transform.localPosition += Vector3.left * 0.2f;
             titleText = Object.Instantiate(tmp);
             titleText.gameObject.SetActive(false);
-            Object.DontDestroyOnLoad(titleText);
-        }
 
-        [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Start))]
-        [HarmonyPostfix]
-
-        public static void OptionsMenuBehaviour_StartPostfix(OptionsMenuBehaviour __instance)
-        {
             if (!__instance.CensorChatButton) return;
 
             if (!popUp)
@@ -80,6 +73,7 @@ namespace TownOfUs.CustomOption
             }
             SetUpOptions();
             InitializeMoreButton(__instance);
+
         }
 
         private static void CreateCustom(OptionsMenuBehaviour prefab)

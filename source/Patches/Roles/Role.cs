@@ -539,7 +539,8 @@ namespace TownOfUs.Roles
 
                         if (role.Alignment == Alignment.CrewmatePower)
                         {
-                            PlayerControl.LocalPlayer.Data.Role.IntroSound = GetIntroSound(RoleTypes.Crewmate);
+                            var popup = GameManagerCreator.Instance.HideAndSeekManagerPrefab.DeathPopupPrefab;
+                            PlayerControl.LocalPlayer.Data.Role.IntroSound = popup.sfx;
                         }
 
                         if (role.Alignment == Alignment.CrewmateInvestigative)
@@ -630,7 +631,8 @@ namespace TownOfUs.Roles
 
                         if (role.Alignment == Alignment.CrewmatePower)
                         {
-                            PlayerControl.LocalPlayer.Data.Role.IntroSound = GetIntroSound(RoleTypes.Crewmate);
+                            var popup = GameManagerCreator.Instance.HideAndSeekManagerPrefab.DeathPopupPrefab;
+                            PlayerControl.LocalPlayer.Data.Role.IntroSound = popup.sfx;
                         }
 
                         if (role.Alignment == Alignment.CrewmateInvestigative)
@@ -749,7 +751,8 @@ namespace TownOfUs.Roles
 
                         if (role.Alignment == Alignment.CrewmatePower)
                         {
-                            PlayerControl.LocalPlayer.Data.Role.IntroSound = GetIntroSound(RoleTypes.Crewmate);
+                            var popup = GameManagerCreator.Instance.HideAndSeekManagerPrefab.DeathPopupPrefab;
+                            PlayerControl.LocalPlayer.Data.Role.IntroSound = popup.sfx;
                         }
 
                         if (role.Alignment == Alignment.CrewmateInvestigative)

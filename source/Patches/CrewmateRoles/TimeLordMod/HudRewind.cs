@@ -20,7 +20,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.TimeLord)) return;
             var data = PlayerControl.LocalPlayer.Data;
             var isDead = data.IsDead;
-            var rewindButton = DestroyableSingleton<HudManager>.Instance.KillButton;
+            var rewindButton = HudManager.Instance.KillButton;
 
             var role = Role.GetRole<TimeLord>(PlayerControl.LocalPlayer);
 

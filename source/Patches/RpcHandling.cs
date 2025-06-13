@@ -945,7 +945,8 @@ namespace TownOfUs
                         var toDie4 = Utils.PlayerById(reader.ReadByte());
                         var fore = Utils.PlayerById(reader.ReadByte());
                         ForetellerKill.DoomKillCount(toDie4, fore);
-                        ForetellerKill.MurderPlayer(toDie4);
+                        if (!toDie4.IsBlessed()) ForetellerKill.MurderPlayer(toDie4);
+                        else if (PlayerControl.LocalPlayer.Is(RoleEnum.Oracle) && toDie4.IsBlessed() && toDie4.GetOracle().Contains(Role.GetRole<Oracle>(PlayerControl.LocalPlayer))) Coroutines.Start(Utils.FlashCoroutine(Colors.Oracle));
                         break;
                     case CustomRPC.SetMimic:
                         var glitchPlayer = Utils.PlayerById(reader.ReadByte());

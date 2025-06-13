@@ -10,8 +10,9 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
         {
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Foreteller))
             {
-                var foreteller = Role.GetRole<Foreteller>(PlayerControl.LocalPlayer);
-                ShowHideButtonsFore.HideButtonsFore(foreteller);
+                var fore = Role.GetRole<Foreteller>(PlayerControl.LocalPlayer);
+                ShowHideButtonsFore.HideButtonsFore(fore);
+                ShowHideButtonsFore.HideTextFore(fore);
             }
         }
     }

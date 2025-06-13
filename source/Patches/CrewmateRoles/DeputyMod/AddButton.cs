@@ -197,6 +197,7 @@ namespace TownOfUs.CrewmateRoles.DeputyMod
                 {
                     var fore = Role.GetRole<Foreteller>(PlayerControl.LocalPlayer);
                     ShowHideButtonsFore.HideTarget(fore, voteArea.TargetPlayerId);
+                    ShowHideButtonsFore.HideTextFore(fore);
                 }
 
                 if (player.Is(RoleEnum.Deputy))

@@ -873,7 +873,7 @@ namespace TownOfUs.Patches
                     PlayerControl.LocalPlayer, "The Sheriff is a crewmate who can kill other players. If the other player is good, they will self-kill instead.");
                 if (role == RoleEnum.Swapper) HudManager.Instance.Chat.AddChat(
                     PlayerControl.LocalPlayer, "The Swapper is a crewmate who can swap the votes of 2 players during meetings.");
-                if (role == RoleEnum.President) DestroyableSingleton<HudManager>.Instance.Chat.AddChat(
+                if (role == RoleEnum.President) HudManager.Instance.Chat.AddChat(
                    PlayerControl.LocalPlayer, "The President is a crewmate who can abstain its vote for the next round.");
                 if (role == RoleEnum.Seer) HudManager.Instance.Chat.AddChat(
                     PlayerControl.LocalPlayer, "The Seer is a crewmate who can reveal the alliance of other players.");
@@ -891,7 +891,7 @@ namespace TownOfUs.Patches
                     PlayerControl.LocalPlayer, "The Executioner is a neutral evil role with the goal to vote out a specific player.");
                 if (role == RoleEnum.Glitch) HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer,
                     "The Glitch is a neutral killer with the goal to kill everyone. In addition to killing, they can also hack players, disabling abilities and mimic players, changing their appearance to look like others.");
-                if (role == RoleEnum.Icenberg) DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer,
+                if (role == RoleEnum.Icenberg) HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer,
                     "The Icenberg is a neutral killer with the goal to kill everyone. In addition to killing, they can also freeze players for a certain time.");
                 if (role == RoleEnum.Jester) HudManager.Instance.Chat.AddChat(
                     PlayerControl.LocalPlayer, "The Jester is a neutral evil role with the goal to be voted out.");
@@ -991,7 +991,7 @@ namespace TownOfUs.Patches
                     PlayerControl.LocalPlayer, "The Wraith is an impostor who can walk trought walls.");
                 if (role == RoleEnum.Captain) HudManager.Instance.Chat.AddChat(
                     PlayerControl.LocalPlayer, "The Captain is a crewmate who can zoom out map to see what's happening.");
-                if (role == RoleEnum.TimeLord) DestroyableSingleton<HudManager>.Instance.Chat.AddChat(
+                if (role == RoleEnum.TimeLord) HudManager.Instance.Chat.AddChat(
                     PlayerControl.LocalPlayer, "The Time Lord is a crewmate who can rewind time.");
             }
 

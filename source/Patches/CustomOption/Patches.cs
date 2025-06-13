@@ -501,6 +501,10 @@ namespace TownOfUs.CustomOption
                 foreach (var button in SettingsAwake.Buttons) button.SelectButton(false);
                 if (tab > 5) return;
                 __instance.taskTabButton.SelectButton(false);
+                foreach (var settingInfo in __instance.settingsInfo)
+                {
+                    settingInfo.gameObject.SetActive(false);
+                }
 
                 if (tab > 0)
                 {
@@ -625,15 +629,20 @@ namespace TownOfUs.CustomOption
             }
         }
 
-        [HarmonyPatch(typeof(PlayerPhysics), nameof(PlayerPhysics.CoSpawnPlayer))]
+        [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnPlayerJoined))]
         private class PlayerJoinPatch
         {
-            public static void Postfix(PlayerPhysics __instance)
+            public static void Postfix([HarmonyArgument(0)] InnerNet.ClientData data)
             {
-                if (PlayerControl.AllPlayerControls.Count < 2 || !AmongUsClient.Instance ||
-                    !PlayerControl.LocalPlayer || !AmongUsClient.Instance.AmHost) return;
-
-                Coroutines.Start(Rpc.SendRpc(RecipientId: __instance.myPlayer.OwnerId));
+                if (!AmongUsClient.Instance || !AmongUsClient.Instance.AmHost) return;
+                Coroutines.Start(SyncSettings(data));
+            }
+            public static IEnumerator SyncSettings(InnerNet.ClientData data)
+            {
+                while (data.Character == null) yield return null;
+                if (data.Character.isDummy) yield break;
+                Coroutines.Start(Rpc.SendRpc(RecipientId: data.Character.OwnerId));
+                yield break;
             }
         }
 

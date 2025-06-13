@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using HarmonyLib;
 using Reactor.Utilities;
 using Reactor.Utilities.Extensions;
@@ -23,6 +24,7 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
         {
             if (voteArea.AmDead) return true;
             var player = Utils.PlayerById(voteArea.TargetPlayerId);
+            if (player.IsJailed()) return true;
             if (
                     player == null ||
                     player.Data.IsDead ||
@@ -31,7 +33,6 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
             var role = Role.GetRole(player);
             return role != null && role.Criteria();
         }
-
 
         public static void GenButton(Foreteller role, PlayerVoteArea voteArea)
         {
@@ -143,8 +144,10 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
                 var currentGuess = role.Guesses[targetId];
                 if (currentGuess == "None") return;
 
+                var playersAlive = PlayerControl.AllPlayerControls.ToArray().Where(x => !x.Data.IsDead && !x.Data.Disconnected && !Role.GetRole(x).Criteria() && !x.IsJailed()).ToList().Count;
+
                 var playerRole = Role.GetRole(voteArea);
-                var playerModifier = Modifier.GetModifiers(voteArea);
+                var playerModifiers = Modifier.GetModifiers(voteArea);
 
                 var toDie = playerRole.Name == currentGuess ? playerRole.Player : role.Player;
 
@@ -154,8 +157,8 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
                     ShowHideButtonsFore.HideSingle(role, targetId, toDie == role.Player);
                     if (toDie.IsLover() && CustomGameOptions.BothLoversDie)
                     {
-                        var playermodi = Modifier.GetModifier<Lover>(voteArea);
-                        var lover = ((Lover)playermodi).OtherLover.Player;
+                        var playerModifier = Modifier.GetModifier<Lover>(voteArea);
+                        var lover = playerModifier.OtherLover.Player;
                         if (!lover.Is(RoleEnum.Pestilence)) ShowHideButtonsFore.HideSingle(role, lover.PlayerId, false);
                     }
                 }

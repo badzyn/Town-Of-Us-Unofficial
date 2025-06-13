@@ -171,7 +171,7 @@ internal static class CreateGameOptionsPatches
             __instance.UpdateMaxPlayersButtons(targetOptions);
             __instance.UpdateLanguageButton((uint)targetOptions.Keywords);
             __instance.MapMenu.UpdateMapButtons((int)targetOptions.MapId);
-            __instance.GameModeText.text = DestroyableSingleton<TranslationController>.Instance.GetString(GameModesHelpers.ModeToName[GameOptionsManager.Instance.CurrentGameOptions.GameMode]);
+            __instance.GameModeText.text = TranslationController.Instance.GetString(GameModesHelpers.ModeToName[GameOptionsManager.Instance.CurrentGameOptions.GameMode]);
             return false;
         }
     }

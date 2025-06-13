@@ -213,6 +213,7 @@ namespace TownOfUs.CrewmateRoles.JailorMod
                     {
                         var fore = Role.GetRole<Foreteller>(PlayerControl.LocalPlayer);
                         ShowHideButtonsFore.HideButtonsFore(fore);
+                        ShowHideButtonsFore.HideTextFore(fore);
                     }
 
                     if (player.Is(RoleEnum.Deputy))

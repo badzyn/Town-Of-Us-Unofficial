@@ -303,7 +303,7 @@ namespace TownOfUs.NeutralRoles.AmnesiacMod
             {
                 var presidentRole = Role.GetRole<President>(amnesiac);
                 presidentRole.VoteBank = CustomGameOptions.PresidentVoteBank;
-                DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(false);
+                HudManager.Instance.KillButton.gameObject.SetActive(false);
             }
 
             else if (role == RoleEnum.Prosecutor)

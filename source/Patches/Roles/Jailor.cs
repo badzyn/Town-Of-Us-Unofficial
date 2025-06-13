@@ -28,7 +28,7 @@ namespace TownOfUs.Roles
             AddToRoleHistory(RoleType);
             Executes = CustomGameOptions.MaxExecutes;
             CanJail = true;
-            Alignment = Alignment.CrewmateKilling;
+            Alignment = Alignment.CrewmatePower;
         }
 
         public DateTime LastJailed { get; set; }

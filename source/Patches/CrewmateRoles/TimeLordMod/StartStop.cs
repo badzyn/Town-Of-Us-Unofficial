@@ -31,7 +31,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
             Patches.SubmergedCompatibility.CheckOutOfBoundsElevator(PlayerControl.LocalPlayer);
             if (HudManager.InstanceExists && HudManager.Instance.FullScreen)
             {
-                var fullscreen = DestroyableSingleton<HudManager>.Instance.FullScreen;
+                var fullscreen = HudManager.Instance.FullScreen;
                 if (fullscreen.color.Equals(new Color(0f, 0.5f, 0.8f, 0.3f)))
                 {
                     fullscreen.color = new Color(1f, 0f, 0f, 0.37254903f);

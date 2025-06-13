@@ -18,8 +18,8 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
                 var playerResults = PlayerReportFeedback(foretellerRole.LastObservedPlayer);
                 var roleResults = RoleReportFeedback(foretellerRole.LastObservedPlayer);
 
-                if (!string.IsNullOrWhiteSpace(playerResults)) DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, playerResults);
-                if (!string.IsNullOrWhiteSpace(roleResults)) DestroyableSingleton<HudManager>.Instance.Chat.AddChat(PlayerControl.LocalPlayer, roleResults);
+                if (!string.IsNullOrWhiteSpace(playerResults)) HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, playerResults);
+                if (!string.IsNullOrWhiteSpace(roleResults)) HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, roleResults);
             }
         }
 

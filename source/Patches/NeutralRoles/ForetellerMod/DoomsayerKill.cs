@@ -1,20 +1,21 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using Reactor.Utilities.Extensions;
+using TownOfUs.CrewmateRoles.DeputyMod;
+using TownOfUs.CrewmateRoles.ImitatorMod;
+using TownOfUs.CrewmateRoles.MedicMod;
+using TownOfUs.CrewmateRoles.SwapperMod;
+using TownOfUs.CrewmateRoles.VigilanteMod;
+using TownOfUs.Extensions;
+using TownOfUs.ImpostorRoles.BlackmailerMod;
+using TownOfUs.Modifiers.AssassinMod;
+using TownOfUs.Patches;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
 using UnityEngine.UI;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
-using TownOfUs.CrewmateRoles.MedicMod;
-using TownOfUs.Modifiers.AssassinMod;
-using TownOfUs.ImpostorRoles.BlackmailerMod;
-using TownOfUs.Extensions;
-using TownOfUs.CrewmateRoles.VigilanteMod;
-using TownOfUs.CrewmateRoles.SwapperMod;
-using TownOfUs.Patches;
-using Reactor.Utilities.Extensions;
-using TownOfUs.CrewmateRoles.ImitatorMod;
-using TownOfUs.CrewmateRoles.DeputyMod;
-using TownOfUs.NeutralRoles.ForetellerMod;
+using Assassin = TownOfUs.Roles.Modifiers.Assassin;
 
 namespace TownOfUs.NeutralRoles.ForetellerMod
 {
@@ -30,7 +31,7 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
         public static void RpcMurderPlayer(PlayerVoteArea voteArea, PlayerControl player, PlayerControl foreteller)
         {
             DoomKillCount(player, foreteller);
-            MurderPlayer(voteArea, player);
+            if (!player.IsBlessed()) MurderPlayer(voteArea, player);
             Utils.Rpc(CustomRPC.ForetellerKill, player.PlayerId, foreteller.PlayerId);
         }
 
@@ -42,27 +43,16 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
             MurderPlayer(voteArea, player, checkLover, showKillAnim);
         }
         public static void DoomKillCount(PlayerControl player, PlayerControl foreteller)
-
         {
-
             var doom = Role.GetRole<Foreteller>(foreteller);
-
             doom.CorrectAssassinKills += 1;
-
             doom.GuessedCorrectly += 1;
-
             if (doom.GuessedCorrectly == CustomGameOptions.ForetellerGuessesToWin)
-
             {
-
                 doom.WonByGuessing = true;
-
                 if (!CustomGameOptions.ForetellerWinEndsGame) MurderPlayer(doom.Player, true, false);
-
             }
-
         }
-
         public static void MurderPlayer(
             PlayerVoteArea voteArea,
             PlayerControl player,
@@ -95,14 +85,14 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
                     }
 
                     player.myTasks.Clear();
-                    importantTextTask.Text = DestroyableSingleton<TranslationController>.Instance.GetString(
+                    importantTextTask.Text = TranslationController.Instance.GetString(
                         StringNames.GhostIgnoreTasks,
                         new Il2CppReferenceArray<Il2CppSystem.Object>(0)
                     );
                 }
                 else
                 {
-                    importantTextTask.Text = DestroyableSingleton<TranslationController>.Instance.GetString(
+                    importantTextTask.Text = TranslationController.Instance.GetString(
                         StringNames.GhostDoTasks,
                         new Il2CppReferenceArray<Il2CppSystem.Object>(0));
                 }
@@ -159,8 +149,9 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
 
                 if (player.Is(RoleEnum.Foreteller))
                 {
-                    var foreteller = Role.GetRole<Foreteller>(PlayerControl.LocalPlayer);
-                    ShowHideButtonsFore.HideButtonsFore(foreteller);
+                    var fore = Role.GetRole<Foreteller>(PlayerControl.LocalPlayer);
+                    ShowHideButtonsFore.HideButtonsFore(fore);
+                    ShowHideButtonsFore.HideTextFore(fore);
                 }
 
                 if (player.Is(RoleEnum.Deputy))
@@ -188,12 +179,13 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
                     hypnotist.HysteriaButton.Destroy();
                 }
             }
-            player.Die(DeathReason.Kill, false);
+            player.Data.IsDead = false;
             if (checkLover && player.IsLover() && CustomGameOptions.BothLoversDie)
             {
                 var otherLover = Modifier.GetModifier<Lover>(player).OtherLover.Player;
                 if (!otherLover.Is(RoleEnum.Pestilence)) MurderPlayer(otherLover, false, false);
             }
+            player.Die(DeathReason.Kill, false);
 
             var deadPlayer = new DeadPlayer
             {
@@ -218,20 +210,43 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
             }
 
             var blackmailers = Role.AllRoles.Where(x => x.RoleType == RoleEnum.Blackmailer && x.Player != null).Cast<Blackmailer>();
+            var blackmailed = new List<PlayerControl>();
             foreach (var role in blackmailers)
             {
-                if (role.Blackmailed != null && voteArea.TargetPlayerId == role.Blackmailed.PlayerId)
+                if (role.Blackmailed != null && !blackmailed.Contains(role.Blackmailed))
                 {
-                    if (BlackmailMeetingUpdate.PrevXMark != null && BlackmailMeetingUpdate.PrevOverlay != null)
+                    blackmailed.Add(role.Blackmailed);
+                    if (voteArea.TargetPlayerId == role.Blackmailed.PlayerId)
                     {
-                        voteArea.XMark.sprite = BlackmailMeetingUpdate.PrevXMark;
-                        voteArea.Overlay.sprite = BlackmailMeetingUpdate.PrevOverlay;
-                        voteArea.XMark.transform.localPosition = new Vector3(
-                            voteArea.XMark.transform.localPosition.x - BlackmailMeetingUpdate.LetterXOffset,
-                            voteArea.XMark.transform.localPosition.y - BlackmailMeetingUpdate.LetterYOffset,
-                            voteArea.XMark.transform.localPosition.z);
+                        if (BlackmailMeetingUpdate.PrevXMark != null && BlackmailMeetingUpdate.PrevOverlay != null)
+                        {
+                            voteArea.XMark.sprite = BlackmailMeetingUpdate.PrevXMark;
+                            voteArea.Overlay.sprite = BlackmailMeetingUpdate.PrevOverlay;
+                            voteArea.XMark.transform.localPosition = new Vector3(
+                                voteArea.XMark.transform.localPosition.x - BlackmailMeetingUpdate.LetterXOffset,
+                                voteArea.XMark.transform.localPosition.y - BlackmailMeetingUpdate.LetterYOffset,
+                                voteArea.XMark.transform.localPosition.z);
+                        }
                     }
                 }
+            }
+            var jailors = Role.AllRoles.Where(x => x.RoleType == RoleEnum.Jailor && x.Player != null).Cast<Jailor>();
+            foreach (var role in jailors)
+            {
+                if (role.Jailed == player)
+                {
+                    role.JailCell.Destroy();
+                    if (PlayerControl.LocalPlayer == role.Player)
+                    {
+                        role.ExecuteButton.Destroy();
+                        role.UsesText.Destroy();
+                    }
+                }
+            }
+            var imitators = Role.AllRoles.Where(x => x.RoleType == RoleEnum.Imitator && x.Player != null).Cast<Imitator>();
+            foreach (var role in imitators)
+            {
+                if (role.jailedPlayer == player) role.JailCell.Destroy();
             }
 
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Vigilante) && !PlayerControl.LocalPlayer.Data.IsDead)

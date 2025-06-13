@@ -23,6 +23,15 @@ namespace TownOfUs.NeutralRoles.ForetellerMod
             }
         }
 
+        public static void HideTextFore(Foreteller role)
+        {
+            foreach (var (_, guessText) in role.RoleGuess)
+            {
+                if (!guessText.isActiveAndEnabled) continue;
+                guessText.gameObject.SetActive(false);
+            }
+        }
+
         public static void HideSingle(
             Foreteller role,
             byte targetId,

@@ -31,6 +31,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption PresidentOn;
         public static CustomNumberOption ProsecutorOn;
         public static CustomNumberOption SwapperOn;
+        public static CustomNumberOption TimeLordOn;
 
         public static CustomHeaderOption CrewProtectiveRoles;
         public static CustomNumberOption AltruistOn;
@@ -44,7 +45,6 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ImitatorOn;
         public static CustomNumberOption MediumOn;
         public static CustomNumberOption PlumberOn;
-        public static CustomNumberOption TimeLordOn;
         public static CustomNumberOption TransporterOn;
 
         public static CustomHeaderOption NeutralBenignRoles;
@@ -645,6 +645,8 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             SwapperOn = new CustomNumberOption(num++, MultiMenu.crewmate, "<color=#66E666FF>Swapper</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
+            TimeLordOn = new CustomNumberOption(num++, MultiMenu.crewmate, "<color=#0000FFFF>Time Lord</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
 
             CrewProtectiveRoles = new CustomHeaderOption(num++, MultiMenu.crewmate, "Crewmate Protective Roles");
             AltruistOn = new CustomNumberOption(num++, MultiMenu.crewmate, "<color=#660000FF>Altruist</color>", 0f, 0f, 100f, 10f,
@@ -666,8 +668,6 @@ namespace TownOfUs.CustomOption
             MediumOn = new CustomNumberOption(num++, MultiMenu.crewmate, "<color=#A680FFFF>Medium</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             PlumberOn = new CustomNumberOption(num++, MultiMenu.crewmate, "<color=#CC6600FF>Plumber</color>", 0f, 0f, 100f, 10f,
-                PercentFormat);
-            TimeLordOn = new CustomNumberOption(num++, MultiMenu.crewmate, "<color=#0000FFFF>Time Lord</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             TransporterOn = new CustomNumberOption(num++, MultiMenu.crewmate, "<color=#00EEFFFF>Transporter</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -1171,6 +1171,16 @@ namespace TownOfUs.CustomOption
             SwapperButton =
                 new CustomToggleOption(num++, MultiMenu.crewmate, "Swapper Can Button", true);
 
+            TimeLord =
+                new CustomHeaderOption(num++, MultiMenu.crewmate, "<color=#0000FFFF>Time Lord</color>");
+            RewindRevive = new CustomToggleOption(num++, MultiMenu.crewmate, "Revive During Rewind", true);
+            RewindDuration = new CustomNumberOption(num++, MultiMenu.crewmate, "Rewind Duration", 2f, 2f, 5f, 0.5f, CooldownFormat);
+            RewindCooldown = new CustomNumberOption(num++, MultiMenu.crewmate, "Rewind Cooldown", 25f, 10f, 60f, 2.5f, CooldownFormat);
+            RewindMaxUses =
+                new CustomNumberOption(num++, MultiMenu.crewmate, "Maximum Number Of Rewinds", 5, 1, 15, 1);
+            TimeLordVitals =
+                new CustomToggleOption(num++, MultiMenu.crewmate, "Time Lord can use Vitals", false);
+
             Altruist = new CustomHeaderOption(num++, MultiMenu.crewmate, "<color=#660000FF>Altruist</color>");
             ReviveDuration =
                 new CustomNumberOption(num++, MultiMenu.crewmate, "Altruist Revive Duration", 5f, 1f, 15f, 1f, CooldownFormat);
@@ -1244,16 +1254,6 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, MultiMenu.crewmate, "Flush Cooldown", 25f, 10f, 60f, 2.5f, CooldownFormat);
             MaxBarricades =
                 new CustomNumberOption(num++, MultiMenu.crewmate, "Maximum Number Of Barricades", 5, 1, 15, 1);
-
-            TimeLord =
-                new CustomHeaderOption(num++, MultiMenu.crewmate, "<color=#0000FFFF>Time Lord</color>");
-            RewindRevive = new CustomToggleOption(num++, MultiMenu.crewmate, "Revive During Rewind", true);
-            RewindDuration = new CustomNumberOption(num++, MultiMenu.crewmate, "Rewind Duration", 2f, 2f, 5f, 0.5f, CooldownFormat);
-            RewindCooldown = new CustomNumberOption(num++, MultiMenu.crewmate, "Rewind Cooldown", 25f, 10f, 60f, 2.5f, CooldownFormat);
-            RewindMaxUses =
-                new CustomNumberOption(num++, MultiMenu.crewmate, "Maximum Number Of Rewinds", 5, 1, 15, 1);
-            TimeLordVitals =
-                new CustomToggleOption(num++, MultiMenu.crewmate, "Time Lord can use Vitals", false);
 
             Transporter =
                 new CustomHeaderOption(num++, MultiMenu.crewmate, "<color=#00EEFFFF>Transporter</color>");
