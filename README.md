@@ -4,7 +4,7 @@
 
 An Among Us mod that adds a bunch of roles, modifiers and game settings
 
-Join our [Discord](https://discord.gg/ugyc4EVUYZ) if you have any problems or want to find people to play with!
+Join our [Discord](https://discord.gg/amongpolska) if you have any problems or want to find people to play with!
 
 | **Impostor Roles**           | **Crewmate Roles**                | **Neutral Roles**                | **Modifiers**                |
 |:----------------------------:|:---------------------------------:|:--------------------------------:|:----------------------------:|
@@ -45,7 +45,7 @@ Join our [Discord](https://discord.gg/ugyc4EVUYZ) if you have any problems or wa
 # Releases
 | Among Us - Version | Mod Version | Steam Link | Epic Games link |
 |----------|-------------|-----------------|----------------------|
-| 16.0.5 & 16.1.0 | v1.3.2 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.2/ToU-Unofficial-v1.3.2-Steam.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.2/ToU-Unofficial-v1.3.2-Epic.zip) |
+| 16.0.5 & 16.1.0 | v1.3.2 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.2/ToU-Unofficial-v1.3.2-Steam_x86.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.2/ToU-Unofficial-v1.3.2-Epic_x64.zip) |
 | 16.0.2 | v1.3.1 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.1/ToU-Unofficial-v1.3.1.zip) | No Download Available |
 
 <details>
