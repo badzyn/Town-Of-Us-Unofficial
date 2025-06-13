@@ -45,14 +45,24 @@ Join our [Discord](https://discord.gg/amongpolska) if you have any problems or w
 # Releases
 | Among Us - Version | Mod Version | Steam Link | Epic Games link |
 |----------|-------------|-----------------|----------------------|
+| 16.0.5 & 16.1.0 | v1.4.0 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.0/ToU-Unofficial-v1.4.0-Steam_x86.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.0/ToU-Unofficial-v1.4.0-Epic_x64.zip) |
 | 16.0.5 & 16.1.0 | v1.3.2 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.2/ToU-Unofficial-v1.3.2-Steam_x86.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.2/ToU-Unofficial-v1.3.2-Epic_x64.zip) |
 | 16.0.2 | v1.3.1 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.1/ToU-Unofficial-v1.3.1.zip) | No Download Available |
 
 <details>
   <summary> Changelog </summary>
     <details>
+  <summary> v1.4.0 </summary>
+  <ul> <li>Moved Time Lord from Crewmate Support to Crewmate Power.</li> </ul>
+  <ul> <li>Changed the intro sound for the “Crewmate Power” Faction.</li> </ul>
+  <ul> <li>Foreteller was able to guess roles while in Jail.</li> </ul>
+  <ul> <li>Foreteller had the ability to guess the roles of people who were in Jail.</li> </ul>
+  <ul> <li>Player blessed by Oracle could be guessed by Foreteller.</li> </ul>
+  <ul> <li>Changing tabs under the “View” button, the pages overlapped with the game's default settings.</li> </ul>
+  </details>
+  <details>
   <summary> v1.3.2 </summary>
-  <ul> <li>Update to Among Us v16.0.5</li> </ul>
+  <ul> <li>Update to Among Us v16.0.5 & v16.1.0</li> </ul>
   </details>
   <details>
   <summary> v1.3.1 </summary>
