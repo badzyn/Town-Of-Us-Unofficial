@@ -1843,7 +1843,7 @@ namespace TownOfUs
                     CrewmateInvestigativeRoles.Add((typeof(Captain), CustomGameOptions.CaptainOn, false || CustomGameOptions.UniqueRoles));
 
                 if (CustomGameOptions.TimeLordOn > 0)
-                    CrewmateInvestigativeRoles.Add((typeof(TimeLord), CustomGameOptions.TimeLordOn, false || CustomGameOptions.UniqueRoles));
+                    CrewmatePowerRoles.Add((typeof(TimeLord), CustomGameOptions.TimeLordOn, true));
 
                 #endregion
                 #region Neutral Roles
