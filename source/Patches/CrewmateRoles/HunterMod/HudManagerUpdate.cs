@@ -21,7 +21,7 @@ namespace TownOfUs.CrewmateRoles.HunterMod
 
             var role = Role.GetRole<Hunter>(PlayerControl.LocalPlayer);
 
-            if (!PlayerControl.LocalPlayer.IsHypnotised())
+            if (!PlayerControl.LocalPlayer.IsHypnotised() && !Utils.CommsCamouflaged())
             {
                 foreach (var player in role.CaughtPlayers)
                 {

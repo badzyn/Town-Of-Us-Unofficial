@@ -20,7 +20,7 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist)) return;
             var role = Role.GetRole<Arsonist>(PlayerControl.LocalPlayer);
 
-            if (!PlayerControl.LocalPlayer.IsHypnotised())
+            if (!PlayerControl.LocalPlayer.IsHypnotised() && !Utils.CommsCamouflaged())
             {
                 foreach (var playerId in role.DousedPlayers)
                 {
@@ -53,11 +53,9 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
             __instance.KillButton.gameObject.SetActive(canShow);
             role.IgniteButton.gameObject.SetActive(canShow);
 
-            // Cooldowny
             __instance.KillButton.SetCoolDown(role.DouseTimer(), CustomGameOptions.DouseCd);
             role.IgniteButton.SetCoolDown(role.DouseTimer(), CustomGameOptions.DouseCd);
 
-            // Ustalanie celu Kill (douse)
             var notDoused = PlayerControl.AllPlayerControls.ToArray().Where(p => !role.DousedPlayers.Contains(p.PlayerId)).ToList();
             if ((CamouflageUnCamouflage.IsCamoed && CustomGameOptions.CamoCommsKillAnyone) || PlayerControl.LocalPlayer.IsHypnotised())
                 Utils.SetTarget(ref role.ClosestPlayer, __instance.KillButton, float.NaN, notDoused);

@@ -158,8 +158,6 @@ namespace TownOfUs
             Generate.BlindCooldown.Set((float)Generate.BlindCooldown.Value + change, false);
             Generate.BlindDuration.Set((float)Generate.BlindDuration.Value + change, false);
             Generate.BarrierCd.Set((float)Generate.BarrierCd.Value + change, false);
-            Generate.SurvScatterTimer.Set((float)Generate.SurvScatterTimer.Value + change, false);
-            Generate.JestScatterTimer.Set((float)Generate.JestScatterTimer.Value + change, false);
             Generate.WraithCooldown.Set((float)Generate.WraithCooldown.Value + change, false);
             GameOptionsManager.Instance.currentNormalGameOptions.KillCooldown += change;
             if (change % 5 != 0)

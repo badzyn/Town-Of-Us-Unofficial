@@ -18,7 +18,7 @@ namespace TownOfUs.Patches
             foreach (var player in PlayerControl.AllPlayerControls.ToArray())
             {
                 CircleCollider2D collider = player.Collider.Caster<CircleCollider2D>();
-                if (player.Data != null && !(player.Data.IsDead || player.Data.Disconnected))
+                if (player.Data != null && !(player.Data.IsDead || player.Data.Disconnected) && player.GetCustomOutfitType() != CustomPlayerOutfitType.Camouflage)
                 {
                     if (player.transform.localScale != player.GetAppearance().SizeFactor)
                     {

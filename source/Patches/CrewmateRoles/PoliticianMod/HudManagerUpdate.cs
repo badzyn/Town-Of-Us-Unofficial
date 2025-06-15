@@ -20,7 +20,7 @@ namespace TownOfUs.CrewmateRoles.PoliticianMod
             var campaignButton = __instance.KillButton;
             var role = Role.GetRole<Politician>(PlayerControl.LocalPlayer);
 
-            if (!PlayerControl.LocalPlayer.IsHypnotised())
+            if (!PlayerControl.LocalPlayer.IsHypnotised() && !Utils.CommsCamouflaged())
             {
                 foreach (var playerId in role.CampaignedPlayers)
                 {

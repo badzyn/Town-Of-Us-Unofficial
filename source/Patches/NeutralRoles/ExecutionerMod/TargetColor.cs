@@ -43,7 +43,7 @@ namespace TownOfUs.NeutralRoles.ExecutionerMod
 
             if (MeetingHud.Instance != null) UpdateMeeting(MeetingHud.Instance, role);
 
-            if (!PlayerControl.LocalPlayer.IsHypnotised())
+            if (!PlayerControl.LocalPlayer.IsHypnotised() && !Utils.CommsCamouflaged())
             {
                 if (role.target && role.target.nameText())
                 {

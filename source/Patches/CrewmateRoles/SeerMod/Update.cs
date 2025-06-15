@@ -65,7 +65,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             var seer = Role.GetRole<Seer>(PlayerControl.LocalPlayer);
             if (MeetingHud.Instance != null) UpdateMeeting(MeetingHud.Instance, seer);
 
-            if (!PlayerControl.LocalPlayer.IsHypnotised())
+            if (!PlayerControl.LocalPlayer.IsHypnotised() && !Utils.CommsCamouflaged())
             {
                 foreach (var player in PlayerControl.AllPlayerControls)
                 {

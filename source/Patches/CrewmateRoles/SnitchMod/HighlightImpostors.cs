@@ -35,7 +35,7 @@ namespace TownOfUs.CrewmateRoles.SnitchMod
             if (!role.TasksDone) return;
             if (MeetingHud.Instance && CustomGameOptions.SnitchSeesImpInMeeting) UpdateMeeting(MeetingHud.Instance);
 
-            if (!PlayerControl.LocalPlayer.IsHypnotised())
+            if (!PlayerControl.LocalPlayer.IsHypnotised() && !Utils.CommsCamouflaged())
             {
                 foreach (var player in PlayerControl.AllPlayerControls)
                 {

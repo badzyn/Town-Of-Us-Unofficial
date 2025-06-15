@@ -303,6 +303,13 @@ namespace TownOfUs
             return null;
         }
 
+        public static bool CommsCamouflaged()
+        {
+            if (!CustomGameOptions.ColourblindComms) return false;
+            if (PlayerControl.LocalPlayer.AreCommsAffected()) return true;
+            return false;
+        }
+
         public static bool IsCrewKiller(this PlayerControl player)
         {
             if (!CustomGameOptions.CrewKillersContinue) return false;

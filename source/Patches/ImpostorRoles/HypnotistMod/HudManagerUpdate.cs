@@ -25,7 +25,7 @@ namespace TownOfUs.ImpostorRoles.HypnotistMod
                 role.HypnotiseButton.graphic.enabled = true;
                 role.HypnotiseButton.gameObject.SetActive(false);
             }
-            if (!PlayerControl.LocalPlayer.IsHypnotised())
+            if (!PlayerControl.LocalPlayer.IsHypnotised() && !Utils.CommsCamouflaged())
             {
                 foreach (var playerId in role.HypnotisedPlayers)
                 {

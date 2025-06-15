@@ -20,7 +20,7 @@ namespace TownOfUs.NeutralRoles.PlaguebearerMod
             var infectButton = __instance.KillButton;
             var role = Role.GetRole<Plaguebearer>(PlayerControl.LocalPlayer);
 
-            if (!PlayerControl.LocalPlayer.IsHypnotised())
+            if (!PlayerControl.LocalPlayer.IsHypnotised() && !Utils.CommsCamouflaged())
             {
                 foreach (var playerId in role.InfectedPlayers)
                 {

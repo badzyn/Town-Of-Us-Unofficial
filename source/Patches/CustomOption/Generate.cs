@@ -245,8 +245,6 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption JesterButton;
         public static CustomToggleOption JesterVent;
         public static CustomToggleOption JesterImpVision;
-        public static CustomToggleOption JesterScatter;
-        public static CustomNumberOption JestScatterTimer;
         public static CustomStringOption JesterWin;
 
         public static CustomHeaderOption Glitch;
@@ -392,8 +390,6 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption VestCd;
         public static CustomNumberOption VestDuration;
         public static CustomNumberOption MaxVests;
-        public static CustomToggleOption SurvivorScatter;
-        public static CustomNumberOption SurvScatterTimer;
 
         public static CustomHeaderOption GuardianAngel;
         public static CustomNumberOption ProtectCd;
@@ -1307,10 +1303,6 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, MultiMenu.neutral, "Vest Duration", 10f, 5f, 15f, 1f, CooldownFormat);
             MaxVests =
                 new CustomNumberOption(num++, MultiMenu.neutral, "Maximum Number Of Vests", 5, 1, 15, 1);
-            SurvivorScatter =
-                new CustomToggleOption(num++, MultiMenu.neutral, "Survivor Scatter Mechanic Enabled", true);
-            SurvScatterTimer =
-                new CustomNumberOption(num++, MultiMenu.neutral, "Survivor Scatter Timer", 25f, 10f, 60f, 2.5f, CooldownFormat);
 
             Executioner =
                 new CustomHeaderOption(num++, MultiMenu.neutral, "<color=#8C4005FF>Executioner</color>");
@@ -1339,11 +1331,7 @@ namespace TownOfUs.CustomOption
                 new CustomToggleOption(num++, MultiMenu.neutral, "Jester Can Hide In Vents", false);
             JesterImpVision =
                 new CustomToggleOption(num++, MultiMenu.neutral, "Jester Has Impostor Vision", false);
-            JesterScatter =
-                new CustomToggleOption(num++, MultiMenu.neutral, "Jester Scatter Mechanic Enabled", true);
-            JestScatterTimer =
-                new CustomNumberOption(num++, MultiMenu.neutral, "Jester Scatter Timer", 25f, 10f, 60f, 2.5f, CooldownFormat);
-           JesterWin = new CustomStringOption(num++, MultiMenu.neutral, "Jester Win",
+            JesterWin = new CustomStringOption(num++, MultiMenu.neutral, "Jester Win",
                 new[] { "Ends Game", "Nothing", "Haunts" });
 
             Phantom =

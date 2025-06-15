@@ -52,7 +52,7 @@ namespace TownOfUs.NeutralRoles.MercenaryMod
                 merc.Guarded.Remove(toRemove);
             }
 
-            if (!PlayerControl.LocalPlayer.IsHypnotised())
+            if (!PlayerControl.LocalPlayer.IsHypnotised() && !Utils.CommsCamouflaged())
             {
                 foreach (var player in PlayerControl.AllPlayerControls)
                 {

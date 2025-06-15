@@ -69,20 +69,5 @@ namespace TownOfUs.Roles
             survTeam.Add(PlayerControl.LocalPlayer);
             __instance.teamToShow = survTeam;
         }
-
-        public float ScatterTimer()
-        {
-            if (MeetingHud.Instance)
-            {
-                LastMoved = DateTime.UtcNow;
-                return CustomGameOptions.SurvScatterTimer;
-            }
-            var utcNow = DateTime.UtcNow;
-            var timeSpan = utcNow - LastMoved;
-            var num = CustomGameOptions.SurvScatterTimer * 1000f;
-            var flag2 = num - (float)timeSpan.TotalMilliseconds < 0f;
-            if (flag2) return 0;
-            return (num - (float)timeSpan.TotalMilliseconds) / 1000f;
-        }
     }
 }

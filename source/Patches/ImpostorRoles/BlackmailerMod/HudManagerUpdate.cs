@@ -41,7 +41,7 @@ namespace TownOfUs.ImpostorRoles.BlackmailerMod
             if (PlayerControl.LocalPlayer.moveable) Utils.SetTarget(ref role.ClosestPlayer, role.BlackmailButton, float.NaN, notBlackmailed);
             else role.BlackmailButton.SetTarget(null);
 
-            if (!PlayerControl.LocalPlayer.IsHypnotised())
+            if (!PlayerControl.LocalPlayer.IsHypnotised() && !Utils.CommsCamouflaged())
             {
                 if (role.Blackmailed != null && !role.Blackmailed.Data.IsDead && !role.Blackmailed.Data.Disconnected)
                 {

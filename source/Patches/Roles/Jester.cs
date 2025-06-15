@@ -47,20 +47,5 @@ namespace TownOfUs.Roles
             //System.Console.WriteLine("Reached Here - Jester edition");
             VotedOut = true;
         }
-
-        public float ScatterTimer()
-        {
-            if (MeetingHud.Instance)
-            {
-                LastMoved = DateTime.UtcNow;
-                return CustomGameOptions.JestScatterTimer;
-            }
-            var utcNow = DateTime.UtcNow;
-            var timeSpan = utcNow - LastMoved;
-            var num = CustomGameOptions.JestScatterTimer * 1000f;
-            var flag2 = num - (float)timeSpan.TotalMilliseconds < 0f;
-            if (flag2) return 0;
-            return (num - (float)timeSpan.TotalMilliseconds) / 1000f;
-        }
     }
 }

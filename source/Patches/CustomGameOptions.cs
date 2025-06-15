@@ -432,10 +432,6 @@ namespace TownOfUs
         public static BarrierOptions ShowBarriered => (BarrierOptions)Generate.ShowBarriered.Get();
         public static bool ClericAttackNotification => Generate.ClericGetsAttackNotification.Get();
         public static float TempSaveCdReset => Generate.TempSaveCdReset.Get();
-        public static bool SurvivorScatter => Generate.SurvivorScatter.Get();
-        public static float SurvScatterTimer => Generate.SurvScatterTimer.Get();
-        public static bool JesterScatter => Generate.JesterScatter.Get();
-        public static float JestScatterTimer => Generate.JestScatterTimer.Get();
         public static float DetectDuration => Generate.DetectDuration.Get();
         public static float WraithCd => (float)Generate.WraithCooldown.Get();
         public static float WraithDuration => (float)Generate.WraithDuration.Get();
