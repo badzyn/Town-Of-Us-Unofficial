@@ -103,7 +103,9 @@ namespace TownOfUs
         Celebrity,
         Taskmaster,
         Immovable,
-        Satellite
+        Satellite,
+        Tasker,
+        Drunk,
     }
 
     public enum AbilityEnum

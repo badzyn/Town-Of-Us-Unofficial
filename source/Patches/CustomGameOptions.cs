@@ -142,6 +142,8 @@ namespace TownOfUs
         public static int TaskmasterOn => (int)Generate.TaskmasterOn.Get();
         public static int ImmovableOn => (int)Generate.ImmovableOn.Get();
         public static int SatelliteOn => (int)Generate.SatelliteOn.Get();
+        public static int TaskerOn => (int)Generate.TaskerOn.Get();
+        public static int DrunkOn => (int)Generate.DrunkOn.Get();
         public static float InitialCooldowns => Generate.InitialCooldowns.Get();
         public static bool BothLoversDie => Generate.BothLoversDie.Get();
         public static bool NeutralLovers => Generate.NeutralLovers.Get();
@@ -256,6 +258,7 @@ namespace TownOfUs
         public static float GrenadeDuration => Generate.GrenadeDuration.Get();
         public static bool GrenadierVent => Generate.GrenadierVent.Get();
         public static float FlashRadius => Generate.FlashRadius.Get();
+        public static int DrunkDuration => (int)Generate.DrunkDuration.Get();
         public static int LovingImpPercent => (int)Generate.LovingImpPercent.Get();
         public static bool KilledOnAlert => Generate.KilledOnAlert.Get();
         public static float AlertCd => Generate.AlertCooldown.Get();

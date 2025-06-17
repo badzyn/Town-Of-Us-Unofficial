@@ -87,5 +87,16 @@ namespace TownOfUs
                     (__instance.Is(ModifierEnum.Lover) && !Modifier.GetModifier<Lover>(__instance).OtherLover.Player.Is(Faction.Crewmates))) GameData.Instance.CompletedTasks--;
             }
         }
+
+        [HarmonyPatch(typeof(ImpostorRole), nameof(ImpostorRole.CanUse))]
+        public class ImpTasks
+        {
+            private static bool Prefix(ImpostorRole __instance, ref IUsable usable, ref bool __result)
+            {
+                if (!PlayerControl.LocalPlayer.Is(ModifierEnum.Tasker)) return true;
+                __result = true;
+                return false;
+            }
+        }
     }
 }

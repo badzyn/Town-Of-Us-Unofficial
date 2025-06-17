@@ -2041,6 +2041,11 @@ namespace TownOfUs
                     }
                 }
             }
+            foreach (var modifier in Modifier.GetModifiers(ModifierEnum.Drunk))
+            {
+                var drunk = (Drunk)modifier;
+                drunk.RoundsLeft -= 1;
+            }
             #endregion
         }
 

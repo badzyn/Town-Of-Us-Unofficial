@@ -84,5 +84,6 @@ namespace TownOfUs.Patches
         public readonly static Color Taskmaster = new Color(0.4f, 0.6f, 0.4f, 1f);
         public readonly static Color Immovable = new Color(0.9f, 0.9f, 0.8f, 1f);
         public readonly static Color Satellite = new Color(0f, 0.6f, 0.8f, 1f);
+        public readonly static Color Drunk = new Color(0.46f, 0.5f, 0f, 1f);
     }
 }

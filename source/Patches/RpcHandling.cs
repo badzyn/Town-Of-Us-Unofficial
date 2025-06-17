@@ -39,7 +39,6 @@ using Il2CppSystem.Linq;
 using TownOfUs.CrewmateRoles.DeputyMod;
 using TownOfUs.CrewmateRoles.ClericMod;
 using TownOfUs.ImpostorRoles.BlackmailerMod;
-using TownOfUs.NeutralRoles.IcenbergMod;
 using TownOfUs.CrewmateRoles.TimeLordMod;
 
 namespace TownOfUs
@@ -2004,6 +2003,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.SatelliteOn))
                     GlobalModifiers.Add((typeof(Satellite), CustomGameOptions.SatelliteOn));
+
+                if (Check(CustomGameOptions.DrunkOn))
+                    GlobalModifiers.Add((typeof(Drunk), CustomGameOptions.DrunkOn));
                 #endregion
                 #region Impostor Modifiers
                 if (Check(CustomGameOptions.DisperserOn) && GameOptionsManager.Instance.currentNormalGameOptions.MapId < 4)
@@ -2017,6 +2019,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.UnderdogOn))
                     ImpostorModifiers.Add((typeof(Underdog), CustomGameOptions.UnderdogOn));
+
+                if (Check(CustomGameOptions.TaskerOn))
+                    ImpostorModifiers.Add((typeof(Tasker), CustomGameOptions.TaskerOn));
                 #endregion
                 #region Assassin Ability
                 AssassinAbility.Add((typeof(Assassin), CustomRPC.SetAssassin, 100));

@@ -81,6 +81,7 @@ namespace TownOfUs.Roles
                 if (CustomGameOptions.DisperserOn > 0) ColorMapping.Add("Disperser", Colors.Impostor);
                 if (CustomGameOptions.DoubleShotOn > 0) ColorMapping.Add("Double Shot", Colors.Impostor);
                 if (CustomGameOptions.SaboteurOn > 0) ColorMapping.Add("Saboteur", Colors.Impostor);
+                if (CustomGameOptions.TaskerOn > 0) ColorMapping.Add("Tasker", Colors.Impostor);
                 if (CustomGameOptions.UnderdogOn > 0) ColorMapping.Add("Underdog", Colors.Impostor);
             }
 

@@ -104,6 +104,7 @@ namespace TownOfUs.CustomOption
 
         public static CustomHeaderOption GlobalModifiers;
         public static CustomNumberOption ButtonBarryOn;
+        public static CustomNumberOption DrunkOn;
         public static CustomNumberOption FlashOn;
         public static CustomNumberOption GiantOn;
         public static CustomNumberOption ImmovableOn;
@@ -120,6 +121,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption DisperserOn;
         public static CustomNumberOption DoubleShotOn;
         public static CustomNumberOption SaboteurOn;
+        public static CustomNumberOption TaskerOn;
         public static CustomNumberOption UnderdogOn;
 
         public static CustomHeaderOption MapSettings;
@@ -583,10 +585,13 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Satellite;
         public static CustomNumberOption DetectDuration;
 
+        public static CustomHeaderOption Drunk;
+        public static CustomNumberOption DrunkDuration;
+
         public static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
         private static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";
         private static Func<object, string> MultiplierFormat { get; } = value => $"{value:0.0#}x";
-
+        private static Func<object, string> RoundsFormat { get; } = value => $"{value:0} Round(s)";
 
         public static void GenerateAll()
         {
@@ -767,6 +772,8 @@ namespace TownOfUs.CustomOption
             GlobalModifiers = new CustomHeaderOption(num++, MultiMenu.modifiers, "Global Modifiers");
             ButtonBarryOn = new CustomNumberOption(num++, MultiMenu.modifiers, "<color=#E600FFFF>Button Barry</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
+            DrunkOn = new CustomNumberOption(num++, MultiMenu.modifiers, "<color=#758000FF>Drunk</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
             FlashOn = new CustomNumberOption(num++, MultiMenu.modifiers, "<color=#FF8080FF>Flash</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             GiantOn = new CustomNumberOption(num++, MultiMenu.modifiers, "<color=#FFB34DFF>Giant</color>", 0f, 0f, 100f, 10f,
@@ -796,6 +803,8 @@ namespace TownOfUs.CustomOption
             DoubleShotOn = new CustomNumberOption(num++, MultiMenu.modifiers, "<color=#FF0000FF>Double Shot</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             SaboteurOn = new CustomNumberOption(num++, MultiMenu.modifiers, "<color=#FF0000FF>Saboteur</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            TaskerOn = new CustomNumberOption(num++, MultiMenu.modifiers, "<color=#FF0000FF>Tasker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             UnderdogOn = new CustomNumberOption(num++, MultiMenu.modifiers, "<color=#FF0000FF>Underdog</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -1544,6 +1553,9 @@ namespace TownOfUs.CustomOption
 
             Diseased = new CustomHeaderOption(num++, MultiMenu.modifiers, "<color=#808080FF>Diseased</color>");
             DiseasedKillMultiplier = new CustomNumberOption(num++, MultiMenu.modifiers, "Diseased Kill Multiplier", 3f, 1.5f, 5f, 0.5f, MultiplierFormat);
+
+            Drunk = new CustomHeaderOption(num++, MultiMenu.modifiers, "<color=#758000FF>Drunk</color>");
+            DrunkDuration = new CustomNumberOption(num++, MultiMenu.modifiers, "Drunk Stays", 3, 1, 5, 1, RoundsFormat);
 
             Frosty = new CustomHeaderOption(num++, MultiMenu.modifiers, "<color=#99FFFFFF>Frosty</color>");
             ChillDuration = new CustomNumberOption(num++, MultiMenu.modifiers, "Chill Duration", 10f, 1f, 15f, 1f, CooldownFormat);

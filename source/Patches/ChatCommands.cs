@@ -647,6 +647,16 @@ namespace TownOfUs.Patches
                         AddModifierMessage(ModifierEnum.Satellite);
                         return false;
                     }
+                    else if (chatText.ToLower().StartsWith("/dru") || chatText.ToLower().StartsWith("/ dru"))
+                    {
+                        AddModifierMessage(ModifierEnum.Drunk);
+                        return false;
+                    }
+                    else if (chatText.ToLower().StartsWith("/taske") || chatText.ToLower().StartsWith("/ taske"))
+                    {
+                        AddModifierMessage(ModifierEnum.Tasker);
+                        return false;
+                    }
                     else if (chatText.ToLower().StartsWith("/ass") || chatText.ToLower().StartsWith("/ ass"))
                     {
                         HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer,
@@ -828,7 +838,7 @@ namespace TownOfUs.Patches
 
                 ColorMapping.Add("\n<b>Global Modifiers:</b>\n", Color.gray);
                 if (CustomGameOptions.ButtonBarryOn > 0) ColorMapping.Add("Button Barry", Colors.ButtonBarry);
-                //if (CustomGameOptions.DrunkOn > 0) ColorMapping.Add("Drunk", Colors.Drunk);
+                if (CustomGameOptions.DrunkOn > 0) ColorMapping.Add("Drunk", Colors.Drunk);
                 if (CustomGameOptions.FlashOn > 0) ColorMapping.Add("Flash", Colors.Flash);
                 if (CustomGameOptions.GiantOn > 0) ColorMapping.Add("Giant", Colors.Giant);
                 if (CustomGameOptions.ImmovableOn > 0) ColorMapping.Add("Immovable", Colors.Immovable);
@@ -846,6 +856,7 @@ namespace TownOfUs.Patches
                 if (CustomGameOptions.UnderdogOn > 0) ColorMapping.Add("Underdog", Colors.Impostor);
                 if (CustomGameOptions.DisperserOn > 0) ColorMapping.Add("Disperser", Colors.Impostor);
                 if (CustomGameOptions.SaboteurOn > 0) ColorMapping.Add("Saboteur", Colors.Impostor);
+                if (CustomGameOptions.TaskerOn > 0) ColorMapping.Add("Tasker", Colors.Impostor);
 
                 string mess = "";
                 foreach (var modi in ColorMapping)
@@ -1045,6 +1056,10 @@ namespace TownOfUs.Patches
                     PlayerControl.LocalPlayer, "The Immovable is a global modifier that makes the player unable to move via abilities and meetings.");
                 if (modifier == ModifierEnum.Satellite) HudManager.Instance.Chat.AddChat(
                     PlayerControl.LocalPlayer, "The Satellite is a global modifier that gives a 1 time use ability to detect where all dead bodies are.");
+                if (modifier == ModifierEnum.Tasker) HudManager.Instance.Chat.AddChat(
+                    PlayerControl.LocalPlayer, "The Tasker is a impostor modifier which you can do tasks.");
+                if (modifier == ModifierEnum.Drunk) HudManager.Instance.Chat.AddChat(
+                    PlayerControl.LocalPlayer, "The Drunk is a global modifier which you have reversed control.");
             }
         }
 

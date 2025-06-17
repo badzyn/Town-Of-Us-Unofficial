@@ -145,6 +145,8 @@ namespace TownOfUs.Patches {
                 if (playerControl.Is(ModifierEnum.Taskmaster)) playerRole += " (<color=#" + Patches.Colors.Taskmaster.ToHtmlStringRGBA() + ">Taskmaster</color>)";
                 if (playerControl.Is(ModifierEnum.Immovable)) playerRole += " (<color=#" + Patches.Colors.Immovable.ToHtmlStringRGBA() + ">Immovable</color>)";
                 if (playerControl.Is(ModifierEnum.Satellite)) playerRole += " (<color=#" + Patches.Colors.Satellite.ToHtmlStringRGBA() + ">Satellite</color>)";
+                if (playerControl.Is(ModifierEnum.Tasker)) playerRole += " (<color=#" + Patches.Colors.Impostor.ToHtmlStringRGBA() + ">Tasker</color>)";
+                if (playerControl.Is(ModifierEnum.Drunk)) playerRole += " (<color=#" + Patches.Colors.Satellite.ToHtmlStringRGBA() + ">Drunk</color>)";
 
                 var player = Role.GetRole(playerControl);
                 if (playerControl.Is(RoleEnum.Phantom) || playerControl.Is(Faction.Crewmates))
