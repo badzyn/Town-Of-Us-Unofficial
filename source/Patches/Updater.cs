@@ -24,7 +24,7 @@ namespace TownOfUs
             //Check if there's a ToU update
             ModUpdater.LaunchUpdater();
 
-            var data = GetVersioning().FirstOrDefault(x => x.ModVersion.Equals(TownOfUs.VersionString));
+            var data = GetVersioning().FirstOrDefault(x => x.ModVersion.Equals(TownOfUs.CompilationString));
             if (data != null)
             {
                 var RequiredVersions = data.InternalVersions;
@@ -33,7 +33,7 @@ namespace TownOfUs
                 {
                     string action = AUversion > RequiredVersions.Keys.Max() ? "downgrade" : "update";
                     string info =
-                        $"ALERT\nTown of Us {TownOfUs.VersionString} requires {RequiredVersions.Values.Last()}\nyou have {Application.version}\nPlease {action} your among us version"
+                        $"ALERT\nTown of Us {TownOfUs.CompilationString} requires {RequiredVersions.Values.Last()}\nyou have {Application.version}\nPlease {action} your among us version"
                         + "\nvisit Github or Discord for any help";
                     TwitchManager man = TwitchManager.Instance;
                     ModUpdater.InfoPopup = UnityEngine.Object.Instantiate(man.TwitchPopup);
@@ -213,7 +213,7 @@ namespace TownOfUs
         }
         public static async Task<bool> checkForUpdate(string updateType = "TOU")
         {
-            //Checks the github api for Town Of Us tags. Compares current version (from VersionString in TownOfUs.cs) to the latest tag version(on GitHub)
+            //Checks the github api for Town Of Us tags. Compares current version (from CompilationString in TownOfUs.cs) to the latest tag version(on GitHub)
             try
             {
                 string githubURI = "";

@@ -24,7 +24,7 @@ using System.Linq;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Us Unofficial", VersionString)]
+    [BepInPlugin(Id, "Town Of Us", VersionString)]
     [BepInDependency(ReactorPlugin.Id)]
     [BepInDependency(SubmergedCompatibility.SUBMERGED_GUID, BepInDependency.DependencyFlags.SoftDependency)]
     [ReactorModFlags(Reactor.Networking.ModFlags.RequireOnAllClients)]
@@ -32,8 +32,9 @@ namespace TownOfUs
     {
         
         public const string Id = "com.slushiegoose.townofus";
-        public const string VersionString = "1.4.2";
-        public static System.Version Version = System.Version.Parse(VersionString);
+        public const string VersionString = "5.3.1"; // Original version ToU compilation. Don't edit it!
+        public const string CompilationString = "1.5.0"; // When you add something, here update the compilation version number.
+        public static System.Version Version = System.Version.Parse(CompilationString);
         public const string VersionTag = "<color=#ff33fc></color>";
 
         public const int MaxPlayers = 35;

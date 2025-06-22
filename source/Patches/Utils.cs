@@ -33,7 +33,6 @@ using TownOfUs.CrewmateRoles.ClericMod;
 using static TownOfUs.DisableAbilities;
 using static TownOfUs.Roles.Icenberg;
 using TownOfUs.ImpostorRoles.KamikazeMod;
-using TownOfUs.CrewmateRoles.SheriffMod;
 
 namespace TownOfUs
 {

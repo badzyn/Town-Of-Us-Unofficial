@@ -362,6 +362,7 @@ namespace TownOfUs
         public static float AuraOuterRadius => (float)Generate.AuraOuterRadius.Get();
         public static float SenseDuration => (float)Generate.SenseDuration.Get();
         public static AdminDeadPlayers WhoSeesDead => (AdminDeadPlayers)Generate.WhoSeesDead.Get();
+        public static bool SpyHasPortableAdmin => Generate.SpyHasPortableAdmin.Get();
         public static bool VentImprovements => Generate.VentImprovements.Get();
         public static bool VitalsLab => Generate.VitalsLab.Get();
         public static bool ColdTempDeathValley => Generate.ColdTempDeathValley.Get();
