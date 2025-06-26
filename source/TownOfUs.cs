@@ -24,7 +24,7 @@ using System.Linq;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Us", CompilationString)]
+    [BepInPlugin(Id, "Town Of Us", VersionString)]
     [BepInDependency(ReactorPlugin.Id)]
     [BepInDependency(SubmergedCompatibility.SUBMERGED_GUID, BepInDependency.DependencyFlags.SoftDependency)]
     [ReactorModFlags(Reactor.Networking.ModFlags.RequireOnAllClients)]
