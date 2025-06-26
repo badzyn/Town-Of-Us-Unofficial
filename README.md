@@ -449,7 +449,6 @@ On Admin Table, the Spy can see the colors of every person on the map.
 |----------|:-------------:|:------:|:------:|
 | Spy | The percentage probability of the Spy appearing | Percentage | 0% |
 | Who Sees Dead Bodies On Admin | Which players see dead bodies on the admin map | Nobody / Spy / Everyone But Spy / Everyone | Nobody |
-|Spy Has Portable Admin| Checkbox that switches portable admin visibility | Toggle | False |
 
 -----------------------
 ## Tracker
