@@ -45,6 +45,7 @@ Join our [Discord](https://discord.gg/amongpolska) if you have any problems or w
 # Releases
 | Among Us - Version | Mod Version | Steam Link | Epic Games link |
 |----------|-------------|-----------------|----------------------|
+| 16.0.5 & 16.1.0 | v1.5.0 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.5.0/ToUU-v1.5.0-Steam.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.5.0/ToUU-v1.5.0-Epic.zip) |
 | 16.0.5 & 16.1.0 | v1.4.2 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.2/ToUU-v1.4.2-Steam.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.2/ToUU-v1.4.2-Epic.zip) |
 | 16.0.5 & 16.1.0 | v1.4.1 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.1/ToUU-v1.4.1-Steam.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.1/ToUU-v1.4.1-Epic.zip) |
 | 16.0.5 & 16.1.0 | v1.4.0 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.0/ToU-Unofficial-v1.4.0-Steam_x86.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.0/ToU-Unofficial-v1.4.0-Epic_x64.zip) |
@@ -53,7 +54,22 @@ Join our [Discord](https://discord.gg/amongpolska) if you have any problems or w
 
 <details>
   <summary> Changelog </summary>
-    <details>
+  <details>
+    <summary> v1.5.0 </summary>
+    <ul> <li> Spy can now acces the admin panel from everywhere</li> </ul>
+    <ul> <li> Several code changes</li> </ul>
+  </details>
+  <details>
+    <summary> v1.4.2 </summary>
+    <ul> <li> Added new modifier: Tasker - The Impostor who can do tasks. </li> </ul>
+    <ul> <li> Added new modifier: Drunk - Can be applied to everyone. Drunk has reversed movement</li> </ul>
+  </details>
+  <details>
+    <summary> v1.4.1 </summary>
+    <ul> <li> Removed Jester scatter mechanic. </li> </ul>
+    <ul> <li> Giant and Mini during Camouflaged are normal size. </li> </ul>
+  </details>
+  <details>
   <summary> v1.4.0 </summary>
   <ul> <li>Moved Time Lord from Crewmate Support to Crewmate Power.</li> </ul>
   <ul> <li>Changed the intro sound for the “Crewmate Power” Faction.</li> </ul>
@@ -430,6 +446,7 @@ On Admin Table, the Spy can see the colors of every person on the map.
 |----------|:-------------:|:------:|:------:|
 | Spy | The percentage probability of the Spy appearing | Percentage | 0% |
 | Who Sees Dead Bodies On Admin | Which players see dead bodies on the admin map | Nobody / Spy / Everyone But Spy / Everyone | Nobody |
+|Spy Has Portable Admin| Checkbox that switches portable admin visibility | Toggle | False |
 
 -----------------------
 ## Tracker
@@ -917,8 +934,6 @@ However, the Jester does not win if the Crewmates, Impostors or another Neutral 
 | Jester Can Button | Whether the Jester Can Press the Button | Toggle | True |
 | Jester Can Vent | Whether the Jester Can Vent | Toggle | False |
 | Jester Has Impostor Vision | Whether the Jester Has Impostor Vision | Toggle | False |
-| Jester Scatter Mechanic  | Whether the Jester needs to keep moving to avoid dying | Toggle | True |
-| Jester Movement Timer | How frequently the Jester needs to move | Time | 25s |
 | Jester Win  | What happens when the Jester wins | Ends Game / Nothing / Haunts | Ends Game |
 
 -----------------------
