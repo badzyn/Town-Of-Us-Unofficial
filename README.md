@@ -32,8 +32,8 @@ Join our [Discord](https://discord.gg/amongpolska) if you have any problems or w
 |                              | [Sheriff](#sheriff)               |                                  | [Tiebreaker](#tiebreaker)    |
 |                              | [Snitch](#snitch)                 |                                  | [Torch](#torch)              |
 |                              | [Spy](#spy)                       |                                  | [Underdog](#underdog)        |
-|                              | [Swapper](#swapper)               |                                  |                              |
-|                              | [Tracker](#tracker)               |                                  |                              |
+|                              | [Swapper](#swapper)               |                                  | [Tasker](#tasker)            |
+|                              | [Tracker](#tracker)               |                                  | [Drunk](#drunk)              |
 |                              | [Trapper](#trapper)               |                                  |                              |
 |                              | [Transporter](#transporter)       |                                  |                              |
 |                              | [Time Lord](#time-lord)           |                                  |                              |
@@ -1525,6 +1525,16 @@ If they voted another player, they will get voted out.
 | Tiebreaker | The percentage probability of the Tiebreaker appearing | Percentage | 0% |
 
 -----------------------
+## Drunk
+### **Applied to: All**
+The Drunk has a reversed movement.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Drunk | The percentage propability of the Drunk appearing | Percentage | 0% |
+| Drunk Duration | Number of Rounds that The Drunk effect stays for | Rounds | 3 |
+
+-----------------------
 ## Disperser
 ### **Applied to: Impostors**
 The Disperser is an Impostor who has a 1 time use ability to send all players to a random vent.\
@@ -1571,6 +1581,17 @@ When they are the only remaining Impostor, they will have their kill cooldown sh
 | Underdog | The percentage probability of the Underdog appearing | Percentage | 0% |
 | Kill Cooldown Bonus | The amount of time added or removed from the Underdog's Kill Cooldown | Time | 5s |
 | Increased Kill Cooldown  | Whether the Underdog's Kill Cooldown is Increased when 2+ Imps are alive | Toggle | True |
+
+-----------------------
+## Tasker
+### **Applied to: Impostors**
+
+Tasker is an Impostor who can do tasks.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Tasker | The percentage propability of Tasker appearing | Percentage | 0% |
 
 -----------------------
 # Role List Settings
@@ -1741,7 +1762,7 @@ If you have any bugs or any need to contact me, join the [Discord Server](https:
 [BryBry16](https://github.com/Brybry16/BetterPolus) - For the code used for Better Polus.\
 [Alexejhero](https://github.com/SubmergedAmongUs/Submerged) - For the Submerged map.\
 [Tajemniczy Typiarz](https://github.com/TTypiarz) - Inspiration of the Foreteller role.\
-[TownOfUsWYGON](https://github.com/wygon/Town-Of-Us-WYGON) - For the Wraith, Kamikaze & Icenberg role ; For notes.\
+[TownOfUsWYGON](https://github.com/wygon/Town-Of-Us-WYGON) - For the Wraith, Kamikaze & Icenberg role ; For notes; For The Drunk modifier.\
 [TownOfUsEdited](https://github.com/lekillerdesgames/Town-Of-Us-Edited) - For Captain role.\
 [TownOfUsR](https://github.com/eDonnes124/Town-Of-Us-R) - Base Mod.\
 [Essentials](https://github.com/DorCoMaNdO/Reactor-Essentials) - For created custom game options.\
