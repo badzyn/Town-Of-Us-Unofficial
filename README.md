@@ -63,11 +63,6 @@ Join our [Discord](https://discord.gg/amongpolska) if you have any problems or w
 <details>
   <summary> Changelog </summary>
   <details>
-    <summary> v1.5.0 </summary>
-    <ul> <li> Spy can now acces the admin panel from everywhere</li> </ul>
-    <ul> <li> Several code changes</li> </ul>
-  </details>
-  <details>
     <summary> v1.4.2 </summary>
     <ul> <li> Added new modifier: Tasker - The Impostor who can do tasks. </li> </ul>
     <ul> <li> Added new modifier: Drunk - Can be applied to everyone. Drunk has reversed movement</li> </ul>
