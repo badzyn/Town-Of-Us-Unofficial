@@ -46,7 +46,6 @@ Join our [Discord](https://discord.gg/amongpolska) if you have any problems or w
 ### Up to version <b>v1.3.2</b> Steam and Epic Games uses the same mod files
 | Among Us - Version | Mod Version | Steam Link | Epic Games link |
 |----------|-------------|-----------------|----------------------|
-| 16.0.5 & 16.1.0 | v1.5.0 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.5.0/ToUU-v1.5.0-Steam.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.5.0/ToUU-v1.5.0-Epic.zip) |
 | 16.0.5 & 16.1.0 | v1.4.2 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.2/ToUU-v1.4.2-Steam.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.2/ToUU-v1.4.2-Epic.zip) |
 | 16.0.5 & 16.1.0 | v1.4.1 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.1/ToUU-v1.4.1-Steam.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.1/ToUU-v1.4.1-Epic.zip) |
 | 16.0.5 & 16.1.0 | v1.4.0 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.0/ToU-Unofficial-v1.4.0-Steam_x86.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.0/ToU-Unofficial-v1.4.0-Epic_x64.zip) |
