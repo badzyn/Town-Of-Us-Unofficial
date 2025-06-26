@@ -51,6 +51,14 @@ Join our [Discord](https://discord.gg/amongpolska) if you have any problems or w
 | 16.0.5 & 16.1.0 | v1.4.0 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.0/ToU-Unofficial-v1.4.0-Steam_x86.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.0/ToU-Unofficial-v1.4.0-Epic_x64.zip) |
 | 16.0.5 & 16.1.0 | v1.3.2 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.2/ToU-Unofficial-v1.3.2-Steam_x86.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.2/ToU-Unofficial-v1.3.2-Epic_x64.zip) |
 | 16.0.2 | v1.3.1 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.1/ToU-Unofficial-v1.3.1.zip) | No Download Available |
+| 16.0.2 | v1.3.0 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.0/ToU-Unofficial-v1.3.0.zip) | No Download Available |
+| 16.0.2 | v1.2.2 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.2.2/ToU-Unofficial-v1.2.2.zip) | No Download Available |
+| 16.0.2 | v1.2.1 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.2.1/ToU-Unofficial-v1.2.1.zip) | No Download Available |
+| 16.0.2 | v1.2.0 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.2.0/ToU-Unofficial-v1.2.0.zip) | No Download Available |
+| 16.0.2 | v1.2.2 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.2.2/ToU-Unofficial-v1.2.2.zip) | No Download Available |
+| 16.0.2 | v1.1.2 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.1.2/ToU-Unofficial-v1.1.2.zip) | No Download Available |
+| 16.0.2 | v1.1.1 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.1.1/ToU-Unofficial-v1.1.1.zip) | No Download Available |
+| 16.0.2 | v1.1.0 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.1.0/ToU-Unofficial-v1.1.0.zip) | No Download Available |
 
 <details>
   <summary> Changelog </summary>
