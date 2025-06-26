@@ -1,6 +1,7 @@
 ﻿using System;
 using HarmonyLib;
 using TownOfUs.Roles;
+using Object = UnityEngine.Object;
 
 namespace TownOfUs.CrewmateRoles.TimeLordMod
 {

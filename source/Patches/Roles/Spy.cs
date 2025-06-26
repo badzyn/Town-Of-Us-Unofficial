@@ -2,7 +2,6 @@ namespace TownOfUs.Roles
 {
     public class Spy : Role
     {
-        KillButton _adminButton;
         public Spy(PlayerControl player) : base(player)
         {
             Name = "Spy";
@@ -12,16 +11,6 @@ namespace TownOfUs.Roles
             RoleType = RoleEnum.Spy;
             AddToRoleHistory(RoleType);
             Alignment = Alignment.CrewmateInvestigative;
-        }
-        public KillButton AdminButton
-        {
-            get => _adminButton;
-            set
-            {
-                _adminButton = value;
-                ExtraButtons.Clear();
-                ExtraButtons.Add(value);
-            }
         }
     }
 }

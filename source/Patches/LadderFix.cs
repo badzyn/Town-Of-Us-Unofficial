@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using HarmonyLib;
+﻿using HarmonyLib;
+using System.Linq;
 using TownOfUs.Extensions;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ namespace TownOfUs.Patches
     public static class LadderFix
     {
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetKinematic))]
+        [HarmonyPatch(typeof(PlayerControl), "SetKinematic")]
         static bool Prefix(PlayerControl __instance, bool b)
         {
             if (__instance != PlayerControl.LocalPlayer) return true;

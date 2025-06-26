@@ -1,6 +1,7 @@
 ﻿using AmongUs.GameOptions;
 using HarmonyLib;
 using TownOfUs.Extensions;
+using TownOfUs.Patches;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
@@ -202,11 +203,6 @@ namespace TownOfUs
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.Captain))
             {
                 __instance.KillButton.graphic.sprite = Zoom;
-                flag = true;
-            }
-            else if (PlayerControl.LocalPlayer.Is(RoleEnum.Spy))
-            {
-                __instance.KillButton.buttonLabelText.text = "Admin";
                 flag = true;
             }
             else

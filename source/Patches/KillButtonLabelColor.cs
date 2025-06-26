@@ -30,14 +30,5 @@ namespace KillButtonLabelColor
                 __instance.ImpostorVentButton.buttonLabelText.SetOutlineColor(role.Color);
             }
         }
-
-        [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.IsKillTimerEnabled), MethodType.Getter)]
-        public static class SpawnMinigameKillTimer
-        {
-            public static void Postfix(ref bool __result)
-            {
-                __result = __result || (Minigame.Instance && Minigame.Instance.TryCast<SpawnInMinigame>() != null);
-            }
-        }
     }
 }

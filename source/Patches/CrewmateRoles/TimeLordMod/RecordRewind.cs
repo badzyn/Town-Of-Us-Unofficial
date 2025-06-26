@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
+using Hazel;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Patches;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
+using TownOfUs.CrewmateRoles.AltruistMod;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Reactor.Utilities.Extensions;
+using Reactor.Utilities;
 using AmongUs.GameOptions;
 
 namespace TownOfUs.CrewmateRoles.TimeLordMod

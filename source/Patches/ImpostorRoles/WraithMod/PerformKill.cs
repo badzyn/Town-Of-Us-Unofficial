@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using TownOfUs.Roles;
 using UnityEngine;
 

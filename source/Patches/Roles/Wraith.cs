@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Reactor.Utilities;
+using Reactor.Utilities.Extensions;
+using System;
+using TownOfUs.Patches;
 using UnityEngine;
 
 namespace TownOfUs.Roles

@@ -1,6 +1,7 @@
 using AmongUs.GameOptions;
 using HarmonyLib;
 using System.Linq;
+using TownOfUs;
 
 namespace TownOfUs.Patches;
 
@@ -22,6 +23,16 @@ internal static class GenericPatches
                    __instance.PlayerSpeedMod is <= 0f or > 3f;
         }
     }
+/*
+    [HarmonyPatch(typeof(PingTracker), nameof(PingTracker.Update))]
+    public static class PingShowerPatch
+    {
+        public static void Postfix(PingTracker __instance)
+        {
+            __instance.text.text += $"<line-height=50%><indent=0%>\n<size=60%>Town of Us <color=#FF0000>Unofficial</color> v {TownOfUs.VersionString} </indent>";
+        }
+    }
+*/
 
     [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Initialize))]
     public static class GameOptionsMenu_Initialize
