@@ -60,6 +60,10 @@ Join our [Discord](https://discord.gg/amongpolska) if you have any problems or w
 | 16.0.2 | v1.1.1 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.1.1/ToU-Unofficial-v1.1.1.zip) | No Download Available |
 | 16.0.2 | v1.1.0 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.1.0/ToU-Unofficial-v1.1.0.zip) | No Download Available |
 
+# Known Issues
+<ul>
+  <li>The Fungle & The Airship, Mira HQ maps can't launch. Only Skeld and Polus work</li>
+</ul>
 <details>
   <summary> Changelog </summary>
   <details>
