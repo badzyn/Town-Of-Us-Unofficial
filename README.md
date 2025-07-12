@@ -46,10 +46,11 @@ Join our [Discord](https://discord.gg/amongpolska) if you have any problems or w
 ### Up to version <b>v1.3.2</b> Steam and Epic Games uses the same mod files
 | Among Us - Version | Mod Version | Steam Link | Epic Games link |
 |----------|-------------|-----------------|----------------------|
-| 16.0.5 & 16.1.0 | v1.4.2 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.2/ToUU-v1.4.2-Steam.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.2/ToUU-v1.4.2-Epic.zip) |
-| 16.0.5 & 16.1.0 | v1.4.1 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.1/ToUU-v1.4.1-Steam.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.1/ToUU-v1.4.1-Epic.zip) |
-| 16.0.5 & 16.1.0 | v1.4.0 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.0/ToU-Unofficial-v1.4.0-Steam_x86.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.0/ToU-Unofficial-v1.4.0-Epic_x64.zip) |
-| 16.0.5 & 16.1.0 | v1.3.2 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.2/ToU-Unofficial-v1.3.2-Steam_x86.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.2/ToU-Unofficial-v1.3.2-Epic_x64.zip) |
+| 16.0.5 & 16.1.0 | v1.5.0 | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.5.0/ToUU-v1.5.0-Steam.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.5.0/ToUU-v1.5.0-Epic.zip) |
+| 16.0.5 & 16.1.0 | v1.4.2-beta | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.2/ToUU-v1.4.2-Steam.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.2/ToUU-v1.4.2-Epic.zip) |
+| 16.0.5 & 16.1.0 | v1.4.1-beta | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.1/ToUU-v1.4.1-Steam.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.1/ToUU-v1.4.1-Epic.zip) |
+| 16.0.5 & 16.1.0 | v1.4.0-beta | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.0/ToU-Unofficial-v1.4.0-Steam_x86.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.4.0/ToU-Unofficial-v1.4.0-Epic_x64.zip) |
+| 16.0.5 & 16.1.0 | v1.3.2-beta | [Download for Steam](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.2/ToU-Unofficial-v1.3.2-Steam_x86.zip) | [Download for Epic Games](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.2/ToU-Unofficial-v1.3.2-Epic_x64.zip) |
 | 16.0.2 | v1.3.1 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.1/ToU-Unofficial-v1.3.1.zip) | No Download Available |
 | 16.0.2 | v1.3.0 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.3.0/ToU-Unofficial-v1.3.0.zip) | No Download Available |
 | 16.0.2 | v1.2.2 | [Download](https://github.com/badzyn/Town-Of-Us-Unofficial/releases/download/v1.2.2/ToU-Unofficial-v1.2.2.zip) | No Download Available |
@@ -62,18 +63,22 @@ Join our [Discord](https://discord.gg/amongpolska) if you have any problems or w
 
 <details>
   <summary> Changelog </summary>
+   <details>
+    <summary> v1.5.0 </summary>
+    <ul> <li> Phantom and Haunter can now open decontamination doors on Polus</li> </ul>
+  </details>
   <details>
-    <summary> v1.4.2 </summary>
+    <summary> v1.4.2-beta </summary>
     <ul> <li> Added new modifier: Tasker - The Impostor who can do tasks. </li> </ul>
     <ul> <li> Added new modifier: Drunk - Can be applied to everyone. Drunk has reversed movement</li> </ul>
   </details>
   <details>
-    <summary> v1.4.1 </summary>
+    <summary> v1.4.1-beta </summary>
     <ul> <li> Removed Jester scatter mechanic. </li> </ul>
     <ul> <li> Giant and Mini during Camouflaged are normal size. </li> </ul>
   </details>
   <details>
-  <summary> v1.4.0 </summary>
+  <summary> v1.4.0-beta </summary>
   <ul> <li>Moved Time Lord from Crewmate Support to Crewmate Power.</li> </ul>
   <ul> <li>Changed the intro sound for the “Crewmate Power” Faction.</li> </ul>
   <ul> <li>Foreteller was able to guess roles while in Jail.</li> </ul>
@@ -82,7 +87,7 @@ Join our [Discord](https://discord.gg/amongpolska) if you have any problems or w
   <ul> <li>Changing tabs under the “View” button, the pages overlapped with the game's default settings.</li> </ul>
   </details>
   <details>
-  <summary> v1.3.2 </summary>
+  <summary> v1.3.2-beta </summary>
   <ul> <li>Update to Among Us v16.0.5 & v16.1.0</li> </ul>
   </details>
   <details>
@@ -180,6 +185,11 @@ Join our [Discord](https://discord.gg/amongpolska) if you have any problems or w
   <ul><li>Added new neutral role - Foreteller</li></ul>
   </details>
 </details>
+
+# Known Issues
+<ul>
+  <li>The Fungle & The Airship, Mira HQ maps can't launch. Only Skeld and Polus work</li>
+</ul>
 
 # Installation
 ## Requirements 
