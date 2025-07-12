@@ -757,7 +757,7 @@ namespace TownOfUs.Patches
                             $"<color=#D91919>/id</color> - See players ids.\n" +
                             $"<color=#D91919>/kick [id]</color> - Kick a player by its id.\n" +
                             $"<color=#D91919>/ban [id]</color> - Ban a player by its id.\n" +
-                            $"<color=#D91919>/limit [number] - Set a player limit in the lobby.";
+                            $"<color=#D91919>/limit [number]</color> - Set a player limit in the lobby.";
                         HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, mess);
                         return false;
                     }
