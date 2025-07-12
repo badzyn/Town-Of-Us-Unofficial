@@ -1,15 +1,16 @@
+using AmongUs.GameOptions;
 using HarmonyLib;
+using Reactor.Utilities.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using TownOfUs.Extensions;
 using TownOfUs.NeutralRoles.ExecutionerMod;
 using TownOfUs.NeutralRoles.GuardianAngelMod;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
-using Reactor.Utilities.Extensions;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using System;
-using TownOfUs.Extensions;
-using System.Diagnostics;
 
 namespace TownOfUs.Patches
 {
@@ -149,12 +150,67 @@ namespace TownOfUs.Patches
                     }
                     if (chatText.ToLower().StartsWith("/secret") && sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId) // Real secret fr fr
                     {
-                        chatText = ":)";
                         System.Diagnostics.Process.Start(new ProcessStartInfo
                         {
                             FileName = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley",
                             UseShellExecute = true
                         });
+                        return false;
+                    }
+                    if (chatText.StartsWith("/limit "))
+                    {
+                        if (GameData.Instance.GetHost() == sourcePlayer.Data)
+                        {
+                            string[] args = chatText.Split(' ');
+                            if (args.Length > 1 && int.TryParse(args[1], out int newLimit))
+                            {
+                                if (newLimit >= 4 && newLimit <= 255) // This mod integrates AleLuduMod, so 35 players is recommended. If you want to use CrowdedMod then the maximum is 255.
+                                {
+                                    try
+                                    {
+                                        GameOptionsManager.Instance.CurrentGameOptions.SetInt(Int32OptionNames.MaxPlayers, newLimit);
+                                        if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
+                                        {
+                                            system = true;
+                                            HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, $"A player limit has been set for: {newLimit}");
+                                        }
+                                        return false;
+                                    }
+                                    catch (System.Exception)
+                                    {
+                                        return false;
+                                    }
+                                }
+                                else
+                                {
+                                    if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
+                                    {
+                                        error = true;
+                                        HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, "The limit must be between 4 and 255.");
+                                    }
+                                    return false;
+                                }
+                            }
+                            else
+                            {
+                                if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
+                                {
+                                    error = true;
+                                    HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, "Use /limit [number]. Example: /limit 20");
+                                }
+                                return false;
+                            }
+                        }
+                        else if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
+                        {
+                            if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
+                            {
+                                noaccess = true;
+                                HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, "You don't have access to this command!");
+                            }
+                            return false;
+                        }
+                        return sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId;
                     }
                     if (chatText.ToLower().StartsWith("/crew") || chatText.ToLower().StartsWith("/ crew"))
                     {
@@ -164,16 +220,6 @@ namespace TownOfUs.Patches
                     else if (chatText.ToLower().StartsWith("/imp") || chatText.ToLower().StartsWith("/ imp"))
                     {
                         AddRoleMessage(RoleEnum.Impostor);
-                        return false;
-                    }
-                    else if (chatText.ToLower().StartsWith("/roles") || chatText.ToLower().StartsWith("/ roles"))
-                    {
-                        AddRoleListMessage();
-                        return false;
-                    }
-                    else if (chatText.ToLower().StartsWith("/modi") || chatText.ToLower().StartsWith("/ modi "))
-                    {
-                        AddModiListMessage();
                         return false;
                     }
                     else if (chatText.ToLower().StartsWith("/alt") || chatText.ToLower().StartsWith("/ alt"))
@@ -684,6 +730,18 @@ namespace TownOfUs.Patches
                         }
                         return false;
                     }
+                    else if (chatText.ToLower().StartsWith("/roles") || chatText.ToLower().StartsWith("/ roles"))
+                    {
+                        system = true;
+                        AddRoleListMessage();
+                        return false;
+                    }
+                    else if (chatText.ToLower().StartsWith("/modi") || chatText.ToLower().StartsWith("/ modi "))
+                    {
+                        system = true;
+                        AddModiListMessage();
+                        return false;
+                    }
                     else if (chatText.ToLower().StartsWith("/help") || chatText.ToLower().StartsWith("/ help"))
                     {
                         string mess =
@@ -698,7 +756,8 @@ namespace TownOfUs.Patches
                             $"<color=#D91919>Shift + G + Enter</color> - Force the game to end.\n" +
                             $"<color=#D91919>/id</color> - See players ids.\n" +
                             $"<color=#D91919>/kick [id]</color> - Kick a player by its id.\n" +
-                            $"<color=#D91919>/ban [id]</color> - Ban a player by its id.\n";
+                            $"<color=#D91919>/ban [id]</color> - Ban a player by its id.\n" +
+                            $"<color=#D91919>/limit [number] - Set a player limit in the lobby.";
                         HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, mess);
                         return false;
                     }
@@ -740,7 +799,7 @@ namespace TownOfUs.Patches
             {
                 Dictionary<string, Color> ColorMapping = new Dictionary<string, Color>();
 
-                ColorMapping.Add("<b>Crewmate:</b>\n", Color.cyan);
+                ColorMapping.Add("<b>Crewmate:</b>\n", Palette.CrewmateBlue);
                 //if (CustomGameOptions.PoliticianOn > 0) ColorMapping.Add("Politician", Colors.Politician);
                 if (CustomGameOptions.SheriffOn > 0) ColorMapping.Add("Sheriff", Colors.Sheriff);
                 if (CustomGameOptions.EngineerOn > 0) ColorMapping.Add("Engineer", Colors.Engineer);
@@ -774,7 +833,7 @@ namespace TownOfUs.Patches
                 if (CustomGameOptions.CaptainOn > 0) ColorMapping.Add("Captain", Colors.Captain);
                 if (CustomGameOptions.HaunterOn > 0) ColorMapping.Add("Haunter", Colors.Haunter);
 
-                ColorMapping.Add("\n<b>Neutral:</b>\n", Color.gray);
+                ColorMapping.Add("\n<b>Neutral:</b>\n", Palette.DisabledGrey);
                 if (CustomGameOptions.AmnesiacOn > 0 || (CustomGameOptions.ExecutionerOn > 0 && CustomGameOptions.OnTargetDead == OnTargetDead.Amnesiac) || (CustomGameOptions.GuardianAngelOn > 0 && CustomGameOptions.GaOnTargetDeath == BecomeOptions.Amnesiac)) ColorMapping.Add("Amnesiac", Colors.Amnesiac);
                 if (CustomGameOptions.GuardianAngelOn > 0) ColorMapping.Add("Guardian Angel", Colors.GuardianAngel);
                 if (CustomGameOptions.MercenaryOn > 0 || (CustomGameOptions.ExecutionerOn > 0 && CustomGameOptions.OnTargetDead == OnTargetDead.Mercenary) || (CustomGameOptions.GuardianAngelOn > 0 && CustomGameOptions.GaOnTargetDeath == BecomeOptions.Mercenary)) ColorMapping.Add("Mercenary", Colors.Mercenary);
@@ -784,7 +843,6 @@ namespace TownOfUs.Patches
                 if (CustomGameOptions.ExecutionerOn > 0) ColorMapping.Add("Executioner", Colors.Executioner);
                 if (CustomGameOptions.JesterOn > 0 || (CustomGameOptions.ExecutionerOn > 0 && CustomGameOptions.OnTargetDead == OnTargetDead.Jester) || (CustomGameOptions.GuardianAngelOn > 0 && CustomGameOptions.GaOnTargetDeath == BecomeOptions.Jester)) ColorMapping.Add("Jester", Colors.Jester);
                 if (CustomGameOptions.PhantomOn > 0) ColorMapping.Add("Phantom", Colors.Phantom);
-                //if (CustomGameOptions.VultureOn > 0) ColorMapping.Add("Vulture", Colors.Vulture);
 
                 if (CustomGameOptions.ArsonistOn > 0 && !PlayerControl.LocalPlayer.Is(RoleEnum.Arsonist)) ColorMapping.Add("Arsonist", Colors.Arsonist);
                 if (CustomGameOptions.GlitchOn > 0 && !PlayerControl.LocalPlayer.Is(RoleEnum.Glitch)) ColorMapping.Add("Glitch", Colors.Glitch);
@@ -795,7 +853,7 @@ namespace TownOfUs.Patches
                 if (CustomGameOptions.JuggernautOn > 0 && !PlayerControl.LocalPlayer.Is(RoleEnum.Juggernaut)) ColorMapping.Add("Juggernaut", Colors.Juggernaut);
                 if (CustomGameOptions.SoulCollectorOn > 0 && !PlayerControl.LocalPlayer.Is(RoleEnum.SoulCollector)) ColorMapping.Add("Soul Collector", Colors.SoulCollector);
 
-                ColorMapping.Add("\n<b>Impostor:</b>\n", Colors.Impostor);
+                ColorMapping.Add("\n<b>Impostor:</b>\n", Palette.ImpostorRed);
                 if (CustomGameOptions.JanitorOn > 0) ColorMapping.Add("Janitor", Colors.Impostor);
                 if (CustomGameOptions.MorphlingOn > 0) ColorMapping.Add("Morphling", Colors.Impostor);
                 if (CustomGameOptions.MinerOn > 0) ColorMapping.Add("Miner", Colors.Impostor);
@@ -826,7 +884,7 @@ namespace TownOfUs.Patches
             {
                 Dictionary<string, Color> ColorMapping = new Dictionary<string, Color>();
 
-                ColorMapping.Add("<b>Crewmate Modifiers:</b>\n", Color.cyan);
+                ColorMapping.Add("<b>Crewmate Modifiers:</b>\n", Palette.CrewmateBlue);
                 if (CustomGameOptions.AftermathOn > 0) ColorMapping.Add("Aftermath", Colors.Aftermath);
                 if (CustomGameOptions.BaitOn > 0) ColorMapping.Add("Bait", Colors.Bait);
                 if (CustomGameOptions.CelebrityOn > 0) ColorMapping.Add("Celebrity", Colors.Celebrity);
@@ -836,7 +894,7 @@ namespace TownOfUs.Patches
                 if (CustomGameOptions.TaskmasterOn > 0) ColorMapping.Add("Taskmaster", Colors.Taskmaster);
                 if (CustomGameOptions.TorchOn > 0) ColorMapping.Add("Torch", Colors.Torch);
 
-                ColorMapping.Add("\n<b>Global Modifiers:</b>\n", Color.gray);
+                ColorMapping.Add("\n<b>Global Modifiers:</b>\n", Palette.DisabledGrey);
                 if (CustomGameOptions.ButtonBarryOn > 0) ColorMapping.Add("Button Barry", Colors.ButtonBarry);
                 if (CustomGameOptions.DrunkOn > 0) ColorMapping.Add("Drunk", Colors.Drunk);
                 if (CustomGameOptions.FlashOn > 0) ColorMapping.Add("Flash", Colors.Flash);
@@ -851,7 +909,7 @@ namespace TownOfUs.Patches
                 if (CustomGameOptions.SleuthOn > 0) ColorMapping.Add("Sleuth", Colors.Sleuth);
                 if (CustomGameOptions.TiebreakerOn > 0) ColorMapping.Add("Tiebreaker", Colors.Tiebreaker);
 
-                ColorMapping.Add("\n<b>Impostor Modifiers:</b>\n", Colors.Impostor);
+                ColorMapping.Add("\n<b>Impostor Modifiers:</b>\n", Palette.ImpostorRed);
                 if (CustomGameOptions.DoubleShotOn > 0) ColorMapping.Add("Double Shot", Colors.Impostor);
                 if (CustomGameOptions.UnderdogOn > 0) ColorMapping.Add("Underdog", Colors.Impostor);
                 if (CustomGameOptions.DisperserOn > 0) ColorMapping.Add("Disperser", Colors.Impostor);
@@ -1102,7 +1160,7 @@ namespace TownOfUs.Patches
             {
                 if (system)
                 {
-                    __instance.NameText.text = "System Message";
+                    __instance.NameText.text = "SYSTEM MESSAGE";
                     __instance.NameText.color = Palette.CrewmateBlue;
                     __instance.NameText.ForceMeshUpdate(true, true);
                     __instance.Xmark.enabled = false;
@@ -1112,7 +1170,7 @@ namespace TownOfUs.Patches
                 }
                 else if (error)
                 {
-                    __instance.NameText.text = "Error";
+                    __instance.NameText.text = "ERROR";
                     __instance.NameText.color = Palette.ImpostorRed;
                     __instance.NameText.ForceMeshUpdate(true, true);
                     __instance.Xmark.enabled = true;
@@ -1122,7 +1180,7 @@ namespace TownOfUs.Patches
                 }
                 else if (noaccess)
                 {
-                    __instance.NameText.text = "No Access";
+                    __instance.NameText.text = "NO ACCESS";
                     __instance.NameText.color = Palette.Blue;
                     __instance.NameText.ForceMeshUpdate(true, true);
                     __instance.Xmark.enabled = true;

@@ -17,7 +17,6 @@ using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.ParticleSystem.PlaybackState;
 using Object = UnityEngine.Object;
 
 namespace TownOfUs.CrewmateRoles.DeputyMod

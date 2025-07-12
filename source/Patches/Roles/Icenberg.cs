@@ -1,20 +1,13 @@
-using AmongUs.GameOptions;
 using InnerNet;
 using Reactor.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static TownOfUs.DisableAbilities;
 using TownOfUs.Extensions;
 using TownOfUs.Patches.NeutralRoles;
-using TownOfUs.Patches;
-using TownOfUs.Roles.Modifiers;
 using UnityEngine;
 using System.Collections;
 using Object = UnityEngine.Object;
-using Reactor.Utilities.Extensions;
 
 
 namespace TownOfUs.Roles

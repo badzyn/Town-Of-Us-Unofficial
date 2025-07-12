@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
 using TownOfUs.Roles;
 using UnityEngine;
-using System;
 using Object = UnityEngine.Object;
 namespace TownOfUs.ImpostorRoles.KamikazeMod
 {

@@ -168,23 +168,19 @@ namespace TownOfUs
         }
     }
 
-    [HarmonyPatch(typeof(MovingPlatformBehaviour))]
-    [HarmonyPatch(nameof(MovingPlatformBehaviour.Use), typeof(PlayerControl))]
-    public class MovingPlatformBehaviourUse
+    [HarmonyPatch(typeof(MovingPlatformBehaviour), nameof(MovingPlatformBehaviour.Use), typeof(PlayerControl))]
+    public class PMovingPlatformBehaviourUse
     {
-        public static void Prefix(MovingPlatformBehaviour __instance, PlayerControl player, ref bool __state)
+        public static bool Prefix(MovingPlatformBehaviour __instance, [HarmonyArgument(0)] PlayerControl player)
         {
-            __state = false;
+            if (player.Data.Disconnected) return true;
             if (player.IsGhostRole() && !GhostRole.GetGhostRole(player).Caught && player.Data.IsDead)
             {
-                player.Data.IsDead = false;
-                __state = true;
+                __instance.IsDirty = true;
+                __instance.StartCoroutine(__instance.UsePlatform(player));
+                return false;
             }
-        }
-        public static void Postfix(PlayerControl player, ref bool __state)
-        {
-            if (__state)
-                player.Data.IsDead = true;
+            return true;
         }
     }
     #endregion
@@ -219,58 +215,72 @@ namespace TownOfUs
     {
         public static bool Prefix(ZiplineConsole __instance)
         {
+            if (__instance.IsCoolingDown()) return false;
             var data = PlayerControl.LocalPlayer.Data;
             __instance.CanUse(data, out var flag, out var _);
-            if (flag) __instance.zipline.Use(__instance.atTop, __instance);
+            if (flag)
+            {
+                __instance.zipline.Use(__instance.atTop, __instance);
+                __instance.CoolDown = __instance.MaxCoolDown;
+            }
             return false;
         }
     }
 
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CheckUseZipline))]
-    public class PlayerControlCheckUseZipline
+    public class ZiplineConsoleCheck
     {
-        public static void Prefix(PlayerControl target, ref bool __state)
+        public static bool Prefix([HarmonyArgument(0)] PlayerControl target,
+        [HarmonyArgument(1)] ZiplineBehaviour ziplineBehaviour, [HarmonyArgument(2)] bool fromTop)
         {
-            var targetData = target.CachedPlayerData;
-            __state = false;
-            if (target.IsGhostRole() && !GhostRole.GetGhostRole(target).Caught && target.Data.IsDead)
+            if (target != null && !MeetingHud.Instance && target.Data != null && !target.inMovingPlat)
             {
-                targetData.IsDead = false;
-                __state = true;
+                if (target.IsGhostRole() && !GhostRole.GetGhostRole(target).Caught && target.Data.IsDead)
+                {
+                    PlayerControl.LocalPlayer.RpcUseZipline(target, ziplineBehaviour, fromTop);
+                    return false;
+                }
+                return true;
             }
-        }
-        public static void Postfix(PlayerControl target, ref bool __state)
-        {
-            var targetData = target.CachedPlayerData;
-            if (__state)
-                targetData.IsDead = true;
+            return true;
         }
     }
 
-    [HarmonyPatch(typeof(ZiplineBehaviour))]
-    [HarmonyPatch(nameof(ZiplineBehaviour.Use), typeof(PlayerControl), typeof(bool))]
+    [HarmonyPatch(typeof(ZiplineBehaviour), nameof(ZiplineBehaviour.Use), typeof(PlayerControl), typeof(bool))]
     public class ZiplineBehaviourUse
     {
-        public static void Prefix(ZiplineBehaviour __instance, PlayerControl player, ref bool __state)
+        public static bool Prefix(ZiplineBehaviour __instance, [HarmonyArgument(0)] PlayerControl player, [HarmonyArgument(1)] bool fromTop)
         {
-            __state = false;
+            if (player.Data.Disconnected) return true;
             if (player.IsGhostRole() && !GhostRole.GetGhostRole(player).Caught && player.Data.IsDead)
             {
-                player.Data.IsDead = false;
-                __state = true;
+                Transform start;
+                Transform end;
+                Transform landing;
+                if (fromTop)
+                {
+                    start = __instance.handleTop;
+                    end = __instance.handleBottom;
+                    landing = __instance.landingPositionBottom;
+                }
+                else
+                {
+                    start = __instance.handleBottom;
+                    end = __instance.handleTop;
+                    landing = __instance.landingPositionTop;
+                }
+                __instance.StopAllCoroutinesForPlayer(player);
+                __instance.playerIdUseZiplineCoroutines[player.PlayerId] = __instance.StartCoroutine(__instance.CoUseZipline(player, start, end, landing, fromTop));
+                return false;
             }
-        }
-        public static void Postfix(PlayerControl player, ref bool __state)
-        {
-            if (__state)
-                player.Data.IsDead = true;
+            return true;
         }
     }
     #endregion
 
     #region DeconControl
     [HarmonyPatch(typeof(DeconControl), nameof(DeconControl.CanUse))]
-    public class DeconControlUse
+    public class DeconControlCanUse
     {
         [HarmonyBefore(LevelImpostorCompatibility.LiGuid)]
         public static void Prefix(DeconControl __instance,
@@ -292,6 +302,26 @@ namespace TownOfUs
         {
             if (__state)
                 playerInfo.IsDead = true;
+        }
+    }
+
+    [HarmonyPatch(typeof(DeconControl), nameof(DeconControl.Use))]
+    public class DeconControlUse
+    {
+        public static bool Prefix(DeconControl __instance)
+        {
+            var data = PlayerControl.LocalPlayer.Data;
+            __instance.CanUse(data, out var flag, out var _);
+            if (flag)
+            {
+                __instance.cooldown = 6f;
+                if (Constants.ShouldPlaySfx())
+                {
+                    SoundManager.Instance.PlaySound(__instance.UseSound, false, 1f, null);
+                }
+                __instance.OnUse.Invoke();
+            }
+            return false;
         }
     }
     #endregion

@@ -1,6 +1,5 @@
 using HarmonyLib;
 using Hazel;
-using System;
 using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.EclipsalMod

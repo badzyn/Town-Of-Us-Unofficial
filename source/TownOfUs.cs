@@ -32,7 +32,7 @@ namespace TownOfUs
     {
         
         public const string Id = "com.slushiegoose.townofus";
-        public const string VersionString = "1.4.2";
+        public const string VersionString = "1.5.0";
         public static System.Version Version = System.Version.Parse(VersionString);
         public const string VersionTag = "<color=#ff33fc></color>";
 
@@ -146,13 +146,8 @@ namespace TownOfUs
         private Harmony _harmony;
 
         public static ConfigEntry<bool> DeadSeeGhosts { get; set; }
-
         public static ConfigEntry<bool> SeeSettingNotifier { get; set; }
-
         public static ConfigEntry<bool> Force4Columns { get; set; }
-
-        public static ConfigEntry<bool> UnlockCosmetics { get; set; }
-
         public static ConfigEntry<bool> DarkMode { get; set; }
 
         public static string RuntimeLocation;
@@ -276,7 +271,6 @@ namespace TownOfUs
 
             DeadSeeGhosts = Config.Bind("Settings", "Dead See Other Ghosts", true, "Whether you see other dead players' ghosts while you're dead");
             SeeSettingNotifier = Config.Bind("Settings", "See Setting Notifier", true, "Whether you see setting changes in lobby at bottom left");
-            UnlockCosmetics = Config.Bind("Cosmetics", "UnlockAll", true, "Unlock all cosmetics");
             Force4Columns = Config.Bind("Settings", "Force 4 Columns", false, "Always display 4 columns in meeting, vitals, etc.");
             DarkMode = Config.Bind("Settings", "Dark Mode", true, "Give your eyes some rest");
 

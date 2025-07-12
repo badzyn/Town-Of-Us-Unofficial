@@ -5,7 +5,6 @@ using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Extensions;
 using TownOfUs.Patches;
 using UnityEngine;
-using TownOfUs.NeutralRoles.ArsonistMod;
 using TownOfUs.CrewmateRoles.ClericMod;
 
 namespace TownOfUs.Roles
